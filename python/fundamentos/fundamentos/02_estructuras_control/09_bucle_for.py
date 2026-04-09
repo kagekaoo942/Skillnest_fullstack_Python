@@ -72,3 +72,5 @@ for valor in platillos_tipicos.values():
 for clave, valor in platillos_tipicos.items():
    print(clave, "=", valor)
 #Imprime: México = Tacos, Colombia = Ajiaco, Costa Rica = Casado
+
+
