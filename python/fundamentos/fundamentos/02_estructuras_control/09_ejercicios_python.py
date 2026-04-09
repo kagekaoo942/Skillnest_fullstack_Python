@@ -3,7 +3,7 @@
 #1. Números Pares Dinámicos
 #Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). El programa debe imprimir los primeros $n$ números pares positivos.
 def numerosDinamicos():
-    n = int(input("¿Cuántos números pares deseas ver?: "))
+    n = int(input("¿Cuántos pares deseas ver?: "))
     pares = []
     for i in range(1, (n * 2) + 1):
         if i % 2 == 0:
@@ -17,6 +17,7 @@ def verificarEdad():
  edad = 2026 - int(nacimiento)
 
  if edad >= 18:
+    print()
     print("Eres nayor de edad ")
     print(f"Tienes {edad} años.")
  else:
@@ -27,53 +28,47 @@ def verificarEdad():
 
 #3. Calculadora de Descuentos
 #Solicita el precio de un producto y la cantidad comprada. Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, el descuento aplicado y el total final.
-
-precioProducto = input("Ingresar precio del producto: ")
-cantidadProducto = input("Ingrese la cantidad comprada:" )
-precioFinal = precioProducto + cantidadProducto
-
-if precioFinal > 100:
-    print("Aplicar 15% de descuento")
-    subTotal = precioProducto * cantidadProducto
-    print(f"Su subtotal es {subTotal}")
-    descuento = precioFinal * 15 / 100
-    print(f"Su descuento es {descuento}")
-    print(f"El precio final de su producto es {precioFinal}")
-else:
-    print("No se le aplica descuento")
-
-
+def aplicarDescuento():
+    precio = float(input("Ingresar precio del producto: "))
+    cantidad = int(input("Ingresar cantidad:"))
+    producto = precio * cantidad
+    if producto >= 100:
+     descuento = producto * 0.15
+    else:
+     descuento =  0
+    total = producto - descuento
+    print(f"El subtotal del producto es: {producto}, el descuento aplicado es: {descuento} y el total seria {total}")
 
 
 #4. Clasificador de Números
 #Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
-num = input("Ingrese un número")
-
-#Cero
-if num == 0:
-    print("El número es cero") 
-
-#Positivo
-elif num > 0:
-    if num % 2 == 0:
-        print("El numero es positivo-Par")
-    else:
-        print("El número es positivo-Impar") 
-
-#Negativo
-else:
-    if num % 2 == 0:
-        print("El número es negativo-Par")
-    else:
-        print("El número es negativo-Impar")
-
-     
-
-
+def clasificadorNum():
+   num = int(input("Ingresa un número: "))
+   if(num > 0):
+# par
+     if num % 2 == 0:
+        print("Positivo-par")
+     elif num % 2 == 0:
+        print("Positivo-impar")
+#Impar
+     elif num < 0:
+      if  num % 2 == 0:
+        print("Negativo-par")
+      elif num % 2 == 0:
+        print("Negativo-impar")
+      else:
+        print("El número es 0")
 
 #II. Iteraciones y Bucles (Intermedio)
 #5. Tabla de Multiplicar Personalizada
 #Solicita un número entero y muestra su tabla de multiplicar del 1 al 12, pero solo muestra los resultados que sean múltiplos de 3.
+
+def tablaMultiplicar():
+   num = int(input("Ingresar número a trabajar: "))
+   for i in range(1, 13):
+      resultado = num * i
+      if resultado % 3 == 0:
+         print(f"del {num} los números que son divisibles por 3 son: {resultado}")
 
 #6. Sumatoria con Centinela
 #Crea un programa que pida números continuamente y los sume. El ciclo debe terminar cuando el usuario ingrese un número negativo. Al final, muestra la suma total (sin incluir el negativo).
@@ -110,3 +105,46 @@ else:
 #Cuántos días la temperatura fue superior a 25 grados.
 #El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 
+
+
+#Menu de navegacion para ejercicios
+continuar = True
+while continuar:
+    print("\n--- Ejercicios Python---")
+    print("\n---1.- Ejercicio 1---")
+    print("\n---2.- Ejercicio 2---")
+    print("\n---3.- Ejercicio 3---")
+    print("\n---4.- Ejercicio 4---")
+    print("\n---5.- Ejercicio 5---")
+    print("\n---6.- Ejercicio 6---")
+    print("\n---7.- Ejercicio 7---")
+    print("\n---8.- Ejercicio 8---")
+    print("\n---9.- Ejercicio 9---")
+    print("\n---10.- Ejercicio 10---")
+    print("\n---11.- Ejercicio 11---")
+    print("\n---12.- Ejercicio 12---")
+    print("\n---13.- Ejercicio 13---")
+    print("\n---14.- Ejercicio 14---")
+    print("\n---15.- Ejercicio 15---")
+    opcion = input("\n---- Elige una opción: (1-15) (0 para salir) =")
+    if opcion == "1":
+        print("\nEjecutando ejercicio 1:")
+        print(numerosDinamicos())
+    elif opcion == "2":
+        print("\nEjecutando ejercicio 2:")
+        print(verificarEdad())
+    elif opcion == "3":
+        print("\nEjecutando ejercicio 3:")
+        print(aplicarDescuento())
+    elif opcion == "4":
+        print("\nEjecutando ejercicio 4:")
+        print(clasificadorNum())
+    elif opcion == "5":
+        print("\nEjecutando ejercicio 5:")
+        print(tablaMultiplicar())
+
+    elif opcion == "0":
+        print("Saliendo...")
+        continuar = False
+    else:
+        print("Opcion no válida, intentar otra vez")
