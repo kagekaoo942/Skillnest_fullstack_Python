@@ -31,7 +31,7 @@ if dia == "Lunes":
     print("¡Comenzamos la semana con buena energía!")
 elif dia == "Viernes":
     print("¡Cerramos la semana listos para un buen descanso!")
-elif dia == "sabado" or "domingo":
+elif dia == "Sabado" or dia =="Domingo":
     print("Descansa todo lo que puedas!") 
 else:
     print("¡Cada día es una nueva oportunidad de aprender!")
