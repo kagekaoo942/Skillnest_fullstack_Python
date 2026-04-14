@@ -2,7 +2,7 @@
 En este archivo pondrás en práctica el uso de bucles 'for' en Python,
 usando ejemplos inspirados en videojuegos y situaciones atractivas.
 """
-
+ ,m     
 # 1. Generador de niveles
 # Imprime todos los niveles del 0 al 100 (incluyendo el 100).
 # (Tu código aquí)
