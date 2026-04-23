@@ -81,7 +81,7 @@ def ejercicio5():
     #Debe retornar: [10, 10]
     result2 = valor_multiplicado_longitud(7, 5)
     print(f"Resultado 2: {result2}")
-    #Debe retornar:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               [35, 35, 35, 35, 35]
+    #Debe retornar: [35, 35, 35, 35, 35]
 #ejercicio 6
 # Genera precio fijo
 def ejercicio6():
@@ -99,8 +99,6 @@ ejercicio7(7, 5)
 
 def limpiar_consola():
     os.system('cls')
-
-
 #Menu de navegacion para ejercicios
 continuar = True
 while continuar:
