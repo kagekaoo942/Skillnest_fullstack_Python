@@ -14,19 +14,31 @@ def numerosPares(lista):
             numero.append(lista[i])
     # Devuelve la lista de números pares
     return numero
-
 # Función que llama a la función numerosPares y imprime el resultado
+# Función principal para interactuar con el usuario
 def ejercicio1():
+    # Inicializa una lista vacía para guardar las entradas del usuario
     lista = []
+
+    # Solicita al usuario la cantidad de números y lo convierte a entero
     num_elementos = int(input("Ingrese la cantidad de números que desea ingresar: "))
+
+    # Bucle que se repite la cantidad de veces definida anteriormente
     for i in range(num_elementos):
+        # Se solicita el número, indicando visualmente cuál posición se está llenando
         num = int(input(f"Ingrese el número {i+1}: "))
+        # Agrega el número ingresado a la lista principal
         lista.append(num)
+
+    # Llama a la función 'numerosPares' pasando la lista llena y guarda el retorno
     nuevaLista = numerosPares(lista)
+    # Muestra en consola la nueva lista filtrada
     print(nuevaLista)
+    
+    # Muestra un mensaje con el conteo de elementos (longitud) de la nueva lista
     print(f"La cantidad de elementos encontrados en la lista es: {len(nuevaLista)}")
 
-# Llama a la función ejercicio1
+# Punto de entrada: Ejecuta la función principal para que el programa inicie
 ejercicio1()
 
 def limpiar_consola():
