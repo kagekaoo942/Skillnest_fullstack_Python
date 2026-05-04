@@ -17,13 +17,13 @@ def numerosPares(lista):
 
 # Función que llama a la función numerosPares y imprime el resultado
 def ejercicio1():
-    # Se crea una lista de números
-    lista = [1, 2, 3, 11, 12, 13, 14, 15, 16]
-    # Llama a la función numerosPares y almacena el resultado en nuevaLista
+    lista = []
+    num_elementos = int(input("Ingrese la cantidad de números que desea ingresar: "))
+    for i in range(num_elementos):
+        num = int(input(f"Ingrese el número {i+1}: "))
+        lista.append(num)
     nuevaLista = numerosPares(lista)
-    # Imprime la lista de números pares
     print(nuevaLista)
-    # Imprime la cantidad de elementos en la lista de números pares
     print(f"La cantidad de elementos encontrados en la lista es: {len(nuevaLista)}")
 
 # Llama a la función ejercicio1
