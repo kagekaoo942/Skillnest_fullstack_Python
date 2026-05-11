@@ -188,14 +188,7 @@ def recibirPalabra():
 
 # Ejercicio 9
 #Crear una función que reciba una lista de números y
-#  genere una nueva lista que contenga únicamente los números positivos.
-def soloPositivo():
-    positiva = []
-
-    for i in range(len(nume)):
-        if nume[i] >= 0:
-            positiva.append(nume[i])
-            return postitiva
+#  genere una nueva lista que contenga únicamente los números positivos. 
     
 
 

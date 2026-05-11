@@ -32,6 +32,7 @@ def mostrar_info_suscripcion(self):
         print(f"Usuario: {self.usuario} | Plan: {self.tipo_suscripcion} | Saldo: {self.saldo_pendiente}")
 
 
+
 '''
  - Usa self.saldo_pendiente += self.costo_mensual para simular el cobro mensual.
  - Válida tipos de suscripción en cambiar_suscripcion para evitar errores.
