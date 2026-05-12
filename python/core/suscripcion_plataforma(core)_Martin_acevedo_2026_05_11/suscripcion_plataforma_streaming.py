@@ -1,7 +1,7 @@
 class SuscripcionStreaming:
    costos_suscripcion = {"Gratis": 0, "Estándar": 5.99, "Premium": 10.99}
 
-   def __init__(self, usuario, saldo_pendiente, tipo_suscripcion = "Gratis"):
+   def __init__(self, usuario, tipo_suscripcion = "Gratis"):
        self.usuario = usuario
        self.tipo_suscripcion = tipo_suscripcion
        self.costo_mensual = self.costos_suscripcion[tipo_suscripcion]
@@ -30,8 +30,6 @@ def ver_contenido_exclusivo(self):
 
 def mostrar_info_suscripcion(self):
         print(f"Usuario: {self.usuario} | Plan: {self.tipo_suscripcion} | Saldo: {self.saldo_pendiente}")
-
-
 
 '''
  - Usa self.saldo_pendiente += self.costo_mensual para simular el cobro mensual.
