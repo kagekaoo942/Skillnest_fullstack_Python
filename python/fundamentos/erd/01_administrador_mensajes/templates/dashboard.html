@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Admin</title>
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        
+        <div class="header-actions">
+            <button type="button" class="btn-wireframe" onclick="location.href = 'nuevo_usuario.html'">Nuevo Usuario</button>
+        </div>
+
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>E-mail</th>
+                    <th>Tipo Usuario</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Patricia</td>
+                    <td>patricia@codingdojo.com</td>
+                    <td>Admin</td>
+                    <td class="actions-cell">
+                        <span class="icon"><i class="bi bi-pencil"></i></span>
+                        <span class="icon"><i class="bi bi-trash3"></i></span>
+                        <span class="icon"><i class="bi bi-envelope-fill"></i></span>
+                    </td>
+                </tr>
+                <tr class="row-bg">
+                    <td>Andrea</td>
+                    <td>andrea@codingdojo.com</td>
+                    <td>Usuario</td>
+                    <td class="actions-cell">
+                        <span class="icon"><i class="bi bi-pencil"></i></span>
+                        <span class="icon"><i class="bi bi-trash3"></i></span>
+                        <span class="icon"><i class="bi bi-envelope-fill"></i></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Katya</td>
+                    <td>katya@codingdojo.com</td>
+                    <td>Usuario</td>
+                    <td class="actions-cell">
+                        <span class="icon"><i class="bi bi-pencil"></i></span>
+                        <span class="icon"><i class="bi bi-trash3"></i></span>
+                        <span class="icon"><i class="bi bi-envelope-fill"></i></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

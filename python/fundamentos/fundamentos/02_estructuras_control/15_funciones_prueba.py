@@ -183,7 +183,7 @@ def recibirPalabra():
     for i in range(cantidad):
         palabra = input(f"{i + 1}. ")
         listaPalabras.append(palabra)
-        vecesAparece(listaPalabras              )
+        vecesAparece(listaPalabras)
 
 
 # Ejercicio 9

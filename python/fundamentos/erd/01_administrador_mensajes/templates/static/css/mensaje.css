@@ -1,0 +1,113 @@
+/* Reseteo básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Contenedor principal alineado a la izquierda como el boceto */
+.main-container {
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Título superior grande */
+h1 {
+    font-size: 52px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Subtítulos (Mensajes / Comentarios) */
+h2 {
+    font-size: 28px;
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.comments-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* Formularios de envío (Input + Botón en línea) */
+.message-form, .comment-form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.comment-form {
+    margin-left: 50px;
+}
+
+/* Cajas de texto con bordes negros gruesos */
+.input-text {
+    flex-grow: 1;
+    height: 40px;
+    border: 3px solid #000000;
+    border-radius: 4px;
+    padding: 5px 15px;
+    font-size: 18px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Estilo para el texto de sugerencia (placeholder) */
+.input-text::placeholder {
+    font-style: italic;
+    color: #000000;
+}
+
+/* Botón plano con sombra gruesa estática */
+.btn-wireframe {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    padding: 6px 16px;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000000;
+    white-space: nowrap;
+}
+
+/* Bloques de contenido (Mensajes y Comentarios) */
+.post-container {
+    margin-bottom: 20px;
+}
+
+.comment-container {
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
+
+/* Enlaces de autores (Azul y sin subrayar) */
+.author-link {
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 18px;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* Párrafos de texto lorem ipsum */
+.post-text {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #000000;
+}

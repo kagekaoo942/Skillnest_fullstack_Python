@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="static/css/nuevo_usuario.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Editar Usuario</h2>
+        
+        <form>
+            <div class="form-row">
+                <label for="">Nombre</label>
+                <input type="text" placeholder="Patricia">
+            </div>
+            
+            <div class="form-row">
+                <label for="edit-email">E-mail</label>
+                <input type="email" id="edit-email" placeholder="patricia@codingdojo.com">
+            </div>
+            
+            <div class="form-row">
+                <label for="edit-pass">Contraseña</label>
+                <input type="text" id="edit-pass" placeholder="***********************">
+            </div>
+            
+            <div class="form-row">
+                <label for="edit-conf">Conf. Contraseña</label>
+                <input type="text" id="edit-conf" placeholder="***********************">
+            </div>
+            
+            <div class="form-row">
+                <label for="edit-role">Tipo de Usuario</label>
+                <div class="select-wrapper">
+                    <select id="edit-role">
+                        <option value="admin" selected>Administrador</option>
+                        <option value="user">Usuario</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" class="btn-black-border" onclick="location.href = 'dashboard-2.html'">Crear</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

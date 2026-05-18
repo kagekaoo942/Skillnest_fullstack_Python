@@ -1,0 +1,74 @@
+/* Reseteo básico de márgenes sin librerías */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Comic Sans MS", "Comic Neue", sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+/* Flexbox nativo para separar las dos columnas de forma simétrica */
+.container {
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    width: 350px;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: normal;
+    margin-bottom: 40px;
+}
+
+/* Alineación en línea para la etiqueta y la caja de texto */
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    width: 140px;
+    font-size: 18px;
+}
+
+/* Estilo estricto del wireframe: borde negro de 3px y esquinas cuadradas */
+.form-row input {
+    width: 160px;
+    height: 35px;
+    border: 3px solid #000000;
+    border-radius: 6px;
+    padding: 5px;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Contenedor para empujar el botón al borde derecho del input */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 300px; /* Ancho exacto sumando label e input */
+    margin-top: 10px;
+}
+
+/* Botón plano con sombra gruesa sólida en 2D */
+.btn-black-border {
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    padding: 6px 16px;
+    font-size: 18px;
+    font-weight: normal;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000000;
+}
