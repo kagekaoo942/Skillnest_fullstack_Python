@@ -128,7 +128,3 @@ VALUES ("randy123", "randy123", "randy@gmail.com", 2),
 ("tete", "tete", "tete@gmail.com", 2),
 ("anne","anne", "anne@gmail.com",3),
 ("martin", "martin", "martin@gmail.com", 3);
-INSERT INTO comentarios(contenido, created_at, id_usuario) 
-VALUES ("hola este es un comenatario", 1, 1);,
-("Hola soy el akon")
-INSERT INTO mensajes()VALUES;
