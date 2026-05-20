@@ -123,5 +123,10 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- insertar datos en tablas (5 registros)
 USE sistema_mensajes;
-INSERT INTO rol(nombre_rol, desc_rol) VALUES ("Admin")
-INSERT INTO rol()
+INSERT INTO `sistema_mensajes`.`roles` (`nombre_rol`, `desc_rol`, `created_by`) 
+VALUES
+('Administrador', 'Acceso total al sistema, gestión de usuarios, permisos y configuraciones globales.', NULL),
+('Moderador', 'Supervisión de mensajes, gestión de reportes y soporte técnico a usuarios.', NULL),
+('Usuario', 'Acceso a funciones avanzadas de mensajería, mayor almacenamiento y chats grupales ilimitados.', NULL),
+('Usuario', 'Permisos básicos para enviar, recibir y organizar mensajes privados.', NULL),
+('Usuario', 'Acceso a funciones avanzadas de mensajería, mayor almacenamiento y chats grupales ilimitados.', NULL);
