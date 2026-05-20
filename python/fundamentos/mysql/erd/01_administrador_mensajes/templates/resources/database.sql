@@ -128,3 +128,62 @@ VALUES ("randy123", "randy123", "randy@gmail.com", 2),
 ("tete", "tete", "tete@gmail.com", 2),
 ("anne","anne", "anne@gmail.com",3),
 ("martin", "martin", "martin@gmail.com", 3);
+SELECT * FROM roles;
+SELECT * FROM usuarios;
+INSERT INTO comentarios(contenido, created_by, id_usuario) 
+VALUES ("hola este es un comenatario", 1, 1),
+("Hola soy el akon", 2, 2),
+("Hola soy la teté", 3, 3);
+SELECT * FROM comentarios; -- Comprobar si existe comentario 
+INSERT INTO mensajes(contenido, created_by, emisor, receptor)
+VALUES("Hola arael, eres el mejor", 1, 1, 5),
+("Hola tete, ¿hiciste la tarea?", 4, 4, 3),
+("Hola randy, mañana es feriado",3, 3, 1);
+
+SELECT * FROM mensajes;
+-- Consultas simples con condicion
+-- Where en mysql
+-- Mostrar mensajes donde el remitente sea randy
+SELECT contenido, emisor
+FROM mensajes
+WHERE emisor = 1; -- WHERE aplica condición sobre consulta
+ 
+ -- Mostrar usuarios que estan activos (DELETED 0)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE DELETED = 0;
+
+ -- Mostrar usuarios que estan inactivos(eliminados) (DELETED 1)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE DELETED = 1;
+ 
+-- Recuperar usuario 1
+UPDATE usuarios
+SET deleted = 0
+WHERE id_usuario = 1; -- recuperar usuario 1
+
+-- Borrar un usuario
+UPDATE usuarios
+SET deleted = 1
+WHERE id_usuario = 2; 
+
+-- Mostrar roles de usuario (nombre, descripcion)
+SELECT nombre_rol, descripcion_rol
+FROM roles
+WHERE deleted = 0;
+
+-- Eliminar dos rol de usuario
+UPDATE roles 
+SET deleted = 1
+WHERE id_rol IN (2, 3);
+-- Recuperar 1 rol de usuario
+UPDATE roles 
+SET deleted = 0
+WHERE id_rol = 2;
+
+SELECT nombre_rol, descripcion_rol
+FROM roles
+WHERE deleted = 0;
+
+
