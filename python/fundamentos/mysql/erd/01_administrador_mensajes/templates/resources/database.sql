@@ -186,4 +186,3 @@ SELECT nombre_rol, descripcion_rol
 FROM roles
 WHERE deleted = 0;
 
-
