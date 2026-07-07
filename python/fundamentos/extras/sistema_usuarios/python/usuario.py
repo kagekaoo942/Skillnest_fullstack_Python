@@ -8,7 +8,7 @@ def registrar_usuario():
     tipo = input("Tipo (1 para ADMIN, 2 para USER): ")
     
     ejecutar_sql("INSERT INTO usuarios (usuario, password, tipo_usuario) VALUES (%s, %s, %s)", (usuario, password, tipo))
-    print("✔️ Guardado.")
+    print("Guardado.")
 
 def listar_usuarios():
     print("\nID | Usuario | Tipo")
@@ -44,7 +44,7 @@ def buscar_usuario():
         print("Contraseña:", fila[2])
         print("Tipo:", fila[3])
     else:
-        print("❌ Usuario no encontrado.")
+        print("Usuario no encontrado.")
 
 def modificar_usuario():
     print("\n--- 4. MODIFICAR USUARIO ---")
@@ -52,7 +52,7 @@ def modificar_usuario():
     
     existe = ejecutar_sql("SELECT id FROM usuarios WHERE id = %s", (id_modificar,))
     if not existe:
-        print("❌ El ID no existe.")
+        print("El ID no existe.")
         return
         
     nuevo_usuario = input("Nuevo usuario: ")
@@ -61,7 +61,7 @@ def modificar_usuario():
     
     query = "UPDATE usuarios SET usuario = %s, password = %s, tipo_usuario = %s WHERE id = %s"
     ejecutar_sql(query, (nuevo_usuario, nuevo_password, nuevo_tipo, id_modificar))
-    print("✔️ Usuario actualizado con éxito.")
+    print("Usuario actualizado con éxito.")
 
 def eliminar_usuario():
     print("\n--- 5. ELIMINAR USUARIO ---")
@@ -69,8 +69,29 @@ def eliminar_usuario():
     
     existe = ejecutar_sql("SELECT id FROM usuarios WHERE id = %s", (id_eliminar,))
     if not existe:
-        print("❌ El ID no existe.")
+        print("El ID no existe.")
         return
         
     ejecutar_sql("DELETE FROM usuarios WHERE id = %s", (id_eliminar,))
-    print("✔️ Registro eliminado correctamente.")
+    print("Registro eliminado correctamente.")
+
+def login():
+    print("\n==============================")
+    print("       INICIO DE SESIÓN       ")
+    print("==============================")
+    username = input("Usuario: ")
+    password = input("Contraseña: ")
+    
+    query = """
+        SELECT u.usuario, t.nombre_tipo 
+        FROM usuarios u 
+        JOIN tipos_usuario t ON u.tipo_usuario = t.id 
+        WHERE u.usuario = %s AND u.password = %s
+    """
+    resultado = ejecutar_sql(query, (username, password))
+    
+    if resultado:
+        return resultado[0] 
+    else:
+        print("Usuario o contraseña incorrectos.")
+        return None
