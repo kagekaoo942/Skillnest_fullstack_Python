@@ -29,5 +29,3 @@ def ruta_equivocada(texto_erroneo):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    
