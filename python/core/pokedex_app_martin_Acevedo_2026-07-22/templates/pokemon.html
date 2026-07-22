@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <main class="container">
+        <!-- Encabezado -->
+        <header class="header">
+            <div class="logo-title">
+                <img src="{{ url_for('static', filename='img/pokeball.png') }}" alt="Pokeball" class="logo-icon">
+                <h1>Pokédex</h1>
+            </div>
+            <p class="subtitle">Todos los Pokémon</p>
+
+            <!-- Botones de filtro -->
+            <div class="filter-buttons">
+                <a href="/todos" class="btn btn-primary">
+                    <span class="icon">☰</span> Ver todos
+                </a>
+                <a href="/primeros" class="btn btn-success">
+                    <span class="icon">▼</span> Ver 5 primeros
+                </a>
+            </div>
+        </header>
+
+        <!-- Grid de Tarjetas Pokémon -->
+        <section class="pokemon-grid">
+            {% for pokemon in pokemons %}
+            <article class="pokemon-card">
+                <!-- Badge con el Número/ID -->
+                <span class="pokemon-id">#{{ pokemon.id }}</span>
+
+                <!-- Imagen del Pokémon -->
+                <div class="card-image-container">
+                    <img src="{{ url_for('static', filename='img/' ~ pokemon.imagen) }}" alt="{{ pokemon.nombre }}"
+                        class="pokemon-image">
+                </div>
+
+                <!-- Detalles principales -->
+                <div class="card-body">
+                    <h2 class="pokemon-name">{{ pokemon.nombre }}</h2>
+
+                    <!-- Tipos de Pokémon -->
+                    <div class="pokemon-types">
+                        {% for tipo in pokemon.tipos %}
+                        <span class="type-badge type-{{ tipo | lower }}">{{ tipo }}</span>
+                        {% endfor %}
+                    </div>
+
+                    <!-- NUEVO: Habilidades del Pokémon -->
+                    <div class="pokemon-abilities">
+                        <span class="abilities-title">Habilidades:</span>
+                        <div class="abilities-list">
+                            {% for habilidad in pokemon.habilidades %}
+                            <span class="ability-badge">{{ habilidad }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Barra de Poder -->
+                    <div class="power-section">
+                        <div class="power-label">
+                            <span>⚡ Poder</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="--porcentaje: {{ pokemon.poder_porcentaje }}%"></div>
+                            <span class="power-value">{{ pokemon.poder }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Especificaciones (Altura y Peso) -->
+                    <div class="pokemon-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">📏</span>
+                            <span class="stat-label">Altura</span>
+                            <strong class="stat-value">{{ pokemon.altura }}m</strong>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">⚖️</span>
+                            <span class="stat-label">Peso</span>
+                            <strong class="stat-value">{{ pokemon.peso }}kg</strong>
+                        </div>
+                    </div>
+
+                    <!-- Botón de acción -->
+                    <a href="/pokemon/{{ pokemon.id }}" class="btn-details">Ver detalles</a>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+
+</body>
+
+</html>
