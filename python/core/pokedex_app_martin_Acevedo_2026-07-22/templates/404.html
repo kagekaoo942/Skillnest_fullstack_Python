@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon no encontrado - Pokédex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="error-body">
+
+    <main class="error-container">
+        <div class="error-card">
+            <!-- Título Principal -->
+            <h1 class="error-title">¡Oh no!</h1>
+            
+            <!-- Mensaje dinámico recibiendo la variable {{ mensaje }} -->
+            <p class="error-subtitle">
+                {{ mensaje if mensaje else 'No pudimos encontrar información sobre el Pokémon solicitado en nuestra Pokédex.' }}
+            </p>
+            
+            <!-- Alerta en Rojo -->
+            <div class="error-alert">
+                <span class="alert-icon">⚠️</span> Pokémon no encontrado
+            </div>
+            
+            <!-- Texto Descriptivo -->
+            <p class="error-description">
+                Tal vez este Pokémon aún no ha sido descubierto, o quizás has escrito mal su nombre.
+            </p>
+            
+            <!-- Botón para Volver -->
+            <a href="/" class="btn btn-primary btn-home">
+                <span class="icon">🏠</span> Volver a la Pokédex
+            </a>
+        </div>
+    </main>
+
+</body>
+</html>

@@ -7,7 +7,7 @@ app = Flask(__name__,
             template_folder=os.path.join(base_dir, 'templates'),
             static_folder=os.path.join(base_dir, 'static'))
 
-# Base de datos ficticia de Pokémon ACTUALIZADA
+# Base de datos de Pokémon
 pokedex = [
    {
        "id": 1, 
@@ -121,23 +121,37 @@ pokedex = [
    }
 ]
 
-# Ruta para mostrar todos los Pokémon al inicio
+# Función para renderizar el error 404
+def pokemon_no_encontrado(busqueda: str):
+    mensaje_texto = f'No pudimos encontrar información sobre "{busqueda}" en nuestra Pokédex.'
+    return render_template("404.html", mensaje=mensaje_texto), 404
+
+# 1. Ruta Principal: Mostrar todos los Pokémon
 @app.route("/")
 def index():
-    return render_template("pokemon.html", pokemons=pokedex)
+    return render_template("pokemon.html", pokemons=pokedex, subtitulo="Todos los Pokémon")
 
-# Error cuando no se encuentra un Pokémon
-def pokemon_no_encontrado(mensaje: str):
-    """Función simple para renderizar la página 404 con un mensaje."""
-    return render_template("404.html", mensaje=mensaje), 404
+# 2. Ruta para Filtrar por Cantidad (Ej: /cantidad/3)
+@app.route("/cantidad/<int:numero>")
+def ver_cantidad(numero):
+    primeros = pokedex[:numero]
+    texto = f"Primeros {numero} Pokémon"
+    return render_template("pokemon.html", pokemons=primeros, subtitulo=texto)
 
-@app.route('/pokemon/<busqueda>')
+# 3. Ruta para Buscar un Pokémon por ID o Nombre (Ej: /pokemon/25 o /pokemon/pikachu)
+@app.route("/pokemon/<busqueda>")
 def ver_pokemon(busqueda):
     for p in pokedex:
-        if str(p['id']) == busqueda or p['nombre'].lower() == busqueda.lower():
-            return render_template('pokemon.html', pokemons=[p])
+        if str(p["id"]) == busqueda or p["nombre"].lower() == busqueda.lower():
+            return render_template("pokemon.html", pokemons=[p], subtitulo=f"Pokémon: {p['nombre']}")
     
-    return pokemon_no_encontrado(f"No existe: {busqueda}")
+    # Si no se encuentra el Pokémon, retorna el template 404
+    return pokemon_no_encontrado(busqueda)
+
+# Manejador global para cualquier otra URL no registrada
+@app.errorhandler(404)
+def pagina_no_encontrada(e):
+    return render_template("404.html", mensaje="La página que buscas no existe en nuestra Pokédex."), 404
 
 if __name__ == "__main__":
     app.run(debug=True)
