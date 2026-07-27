@@ -7,7 +7,7 @@ app = Flask(__name__,
             template_folder=os.path.join(base_dir, 'templates'),
             static_folder=os.path.join(base_dir, 'static'))
 
-# Base de datos de Pokémon
+# Base de datos de la informacion de cada pokemón
 pokedex = [
    {
        "id": 1, 
