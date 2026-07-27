@@ -1,3 +1,5 @@
+
+
 '''
 Escenario 2 — Sistema de Gimnasio
 Un gimnasio necesita un sistema para administrar sus clientes, entrenadores y planes de entrenamiento.
