@@ -21,7 +21,6 @@ body {
     background-color: #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    overflow: hidden;
 }
 
 .tabla-apps thead {
@@ -41,7 +40,6 @@ body {
     border-bottom: 1px solid #edf2f7;
     font-size: 14px;
     color: #2d3748;
-    vertical-align: middle;
 }
 
 /*etiquetas*/
@@ -50,7 +48,6 @@ body {
     padding: 4px 10px;
     border-radius: 6px;
     font-size: 12px;
-    font-weight: bold;
 }
 
 .badge-blue {
@@ -72,7 +69,6 @@ body {
     background-color: #f0f9ff;
     color: #0284c7;
     font-weight: bold;
-    font-style: italic;
     font-size: 12px;
     cursor: pointer;
     display: flex;

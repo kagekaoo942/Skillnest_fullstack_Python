@@ -14,7 +14,7 @@ datos = [
 ]
 
 # Ruta para mostrar la tabla con datos
-@app.route("/")
+@app.route("/tabla")
 def inicio():
     apps = [
         {
