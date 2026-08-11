@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado de Frutas - Pedido Confirmado</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome (Íconos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .checkout-card {
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+        }
+
+        .checkout-header {
+            background-color: #198754;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .check-icon-circle {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            color: #198754;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            color: #198754;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .alert-info-custom {
+            background-color: #e0f7fa;
+            color: #00838f;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .fruit-thumb {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .delivery-box {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ url_for('index') }}">
+                <i class="fa-solid fa-apple-whole fs-4"></i>
+                Mercado de Frutas
+            </a>
+            <div>
+                <a class="nav-link text-white d-inline me-3" href="{{ url_for('index') }}">Inicio</a>
+                <a class="nav-link text-white d-inline" href="{{ url_for('catalogo') }}">Catálogo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tarjeta Principal de Pedido Confirmado -->
+    <div class="container">
+        <div class="checkout-card">
+
+            <!-- Encabezado verde con Check -->
+            <div class="checkout-header">
+                <div class="check-icon-circle">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2 class="fw-bold mb-1">¡Pedido Confirmado!</h2>
+                <p class="m-0 opacity-75">Gracias por tu compra</p>
+            </div>
+
+            <div class="p-4 p-md-5">
+
+                <!-- Información del Cliente -->
+                <div class="section-title">Información del Cliente</div>
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-2 mb-md-0">
+                        <p class="mb-1"><strong>Nombre:</strong> {{ nombre }}</p>
+                        <p class="mb-0"><strong>Email:</strong> {{ email }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="mb-0"><strong>Dirección de entrega:</strong></p>
+                        <p class="text-muted mb-0">{{ direccion }}</p>
+                    </div>
+                </div>
+
+                <hr class="my-4 text-muted">
+
+                <!-- Detalle del Pedido -->
+                <div class="section-title">Detalle del Pedido</div>
+
+                <!-- Banner Total de Frutas -->
+                <div class="alert alert-info-custom py-2 mb-4">
+                    Total de frutas en tu pedido: {{ total_frutas }}
+                </div>
+
+                <!-- Tabla de Productos -->
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr class="text-muted border-bottom">
+                                <th scope="col" class="pb-3">Fruta</th>
+                                <th scope="col" class="pb-3">Precio</th>
+                                <th scope="col" class="pb-3">Cantidad</th>
+                                <th scope="col" class="pb-3 text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="{{ url_for('static', filename='images/' + item.imagen) }}"
+                                            alt="{{ item.nombre }}" class="fruit-thumb">
+                                        <span class="fw-semibold">{{ item.nombre }}</span>
+                                    </div>
+                                </td>
+                                <td>${{ item.precio }}</td>
+                                <td>{{ item.cantidad }}</td>
+                                <td class="text-end fw-semibold">${{ "%.1f"|format(item.subtotal) }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold fs-5 pt-3 border-0">Total:</td>
+                                <td class="text-end fw-bold fs-5 pt-3 border-0">${{ "%.1f"|format(total) }}</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Cuadro Informativo de Entrega -->
+                <div class="delivery-box d-flex align-items-center gap-3 mt-4">
+                    <i class="fa-solid fa-truck-fast text-success fs-3"></i>
+                    <div>
+                        <strong class="d-block text-secondary">Información de entrega</strong>
+                        <small class="text-muted">Tu pedido será entregado en un plazo de 24-48 horas.</small>
+                    </div>
+                </div>
+
+                <!-- Botón Volver a la tienda -->
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary px-4 py-2 fw-bold">
+                        <i class="fa-solid fa-house me-2"></i>Volver a la tienda
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado de Frutas - Nuestras Frutas</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome (para los íconos de la manzana y características) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Estilos específicos para replicar la vista de la plantilla */
+        .fruit-card-showcase {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: #fff;
+            transition: transform 0.2s ease;
+        }
+        
+        .fruit-card-showcase:hover {
+            transform: translateY(-3px);
+        }
+
+        .fruit-img-container {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .fruit-img-container img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .fruit-overlay-info {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2), transparent);
+            padding: 12px 15px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 2;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .feature-card {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: #ffffff;
+            padding: 30px 20px;
+            height: 100%;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: #198754;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ url_for('index') }}">
+                <i class="fa-solid fa-apple-whole fs-4"></i> 
+                Mercado de Frutas
+            </a>
+            <div>
+                <a class="nav-link text-white d-inline me-3 opacity-75" href="{{ url_for('index') }}">Inicio</a>
+                <a class="nav-link text-white d-inline fw-bold" href="{{ url_for('catalogo') }}">Catálogo</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="bg-secondary text-center text-white py-5">
+        <div class="container py-2">
+            <h1 class="display-5 fw-bold mb-2">Nuestras Frutas</h1>
+            <p class="fs-5 opacity-75">Descubre nuestra variedad de frutas frescas disponibles</p>
+        </div>
+    </header>
+
+    <!-- Catálogo en cuadrícula (4 por fila) -->
+    <section class="container my-5">
+        <div class="row g-4">
+            {% for fruta in frutas %}
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card fruit-card-showcase">
+                    <div class="fruit-img-container">
+                        <img src="{{ url_for('static', filename='images/' + fruta.imagen) }}" alt="{{ fruta.nombre }}">
+                    </div>
+                    <div class="fruit-overlay-info">
+                        <h5 class="fw-bold text-white mb-0 fs-6">{{ fruta.nombre }}</h5>
+                        <small class="text-warning fw-bold">${{ fruta.precio }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Botón Hacer un pedido -->
+        <div class="text-center my-5">
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 py-2 fw-bold shadow-sm">
+                <i class="fa-solid fa-cart-shopping me-2"></i>Hacer un pedido
+            </a>
+        </div>
+    </section>
+
+    <!-- Sección ¿Por qué elegirnos? -->
+    <section class="container mb-5 pt-3">
+        <h2 class="text-center fw-bold mb-4">¿Por qué elegirnos?</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">100% Orgánico</h5>
+                    <p class="text-muted small mb-0">
+                        Todas nuestras frutas son cultivadas sin pesticidas ni químicos dañinos.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Entrega Rápida</h5>
+                    <p class="text-muted small mb-0">
+                        Entregamos en menos de 48 horas para asegurar la máxima frescura.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card text-center">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">Calidad Garantizada</h5>
+                    <p class="text-muted small mb-0">
+                        Si no estás satisfecho con nuestros productos, te devolvemos tu dinero.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
