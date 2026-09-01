@@ -1,0 +1,230 @@
+/* ==========================================================
+   CONTADOR DE VISITAS
+   ========================================================== */
+
+
+/* ==========================================================
+   VARIABLES
+   ========================================================== */
+
+:root {
+    --color-primary: #ff6b35;
+    --color-success: #ff8c42;
+    --color-warning: #ff9a56;
+    --color-danger: #d32f2f;
+    --color-background: #ffe8d6;
+    --color-text: #212529;
+}
+
+
+/* ==========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================== */
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe8d6, #ffcccb);
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+}
+
+
+/* ==========================================================
+   TARJETA PRINCIPAL
+   ========================================================== */
+
+.visitas-card {
+    max-width: 650px;
+    margin: 60px auto;
+    padding: 50px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    text-align: center;
+}
+
+
+/* ==========================================================
+   ICONO
+   ========================================================== */
+
+.icono {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: #ffe8d6;
+    color: #ff6b35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+}
+
+
+/* ==========================================================
+   TÍTULO
+   ========================================================== */
+
+.visitas-card h1 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.descripcion {
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+
+/* ==========================================================
+   CONTADOR
+   ========================================================== */
+
+.contador {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
+
+.contador span {
+    font-size: 64px;
+    font-weight: bold;
+}
+
+
+.texto-visitas {
+    font-size: 18px;
+    color: #495057;
+}
+
+
+/* ==========================================================
+   BOTONES
+   ========================================================== */
+
+.acciones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+
+.btn {
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+/* ==========================================================
+   FORMULARIO
+   ========================================================== */
+
+.formulario {
+    margin-top: 30px;
+    padding: 25px;
+    background: #fff3e0;
+    border-radius: 15px;
+}
+
+
+.formulario h3 {
+    margin-bottom: 20px;
+}
+
+
+.form-control {
+    border-radius: 8px;
+}
+
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+.input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+/* ==========================================================
+   CONTADOR DE REINICIOS
+   ========================================================== */
+
+.reinicios {
+    margin-top: 25px;
+    padding: 15px;
+    background: #ffe8d6;
+    border-radius: 10px;
+    color: #d84315;
+}
+
+
+.reinicios strong {
+    font-size: 20px;
+}
+
+
+/* ==========================================================
+   DESTRUIR SESIÓN
+   ========================================================== */
+
+.destruir {
+    margin-top: 25px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 576px) {
+
+    body {
+        display: block;
+    }
+
+
+    .visitas-card {
+        margin: 25px 15px;
+        padding: 30px 20px;
+    }
+
+
+    .contador {
+        width: 140px;
+        height: 140px;
+    }
+
+
+    .contador span {
+        font-size: 48px;
+    }
+
+
+    .acciones {
+        flex-direction: column;
+    }
+
+
+    .acciones .btn {
+        width: 100%;
+    }
+
+}
