@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Juego del Destino</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <input class="theme-check" type="checkbox" id="tema">
+    <label class="theme-toggle" for="tema" aria-label="Cambiar tema">☼</label>
+
+    <main class="page-shell">
+        <section class="destiny-card" aria-labelledby="title">
+            <header class="card-header">
+                <div class="moon-icon" aria-hidden="true">☾</div>
+                <h1 id="title">El Juego del Destino</h1>
+                <p>Descubre qué te depara el futuro</p>
+            </header>
+
+            <form class="destiny-form" action="futuro.html" method="get">
+                <label class="field">
+                    <span class="field-icon" aria-hidden="true">♟</span>
+                    <input type="text" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+                </label>
+
+                <label class="field">
+                    <span class="field-icon" aria-hidden="true">▣</span>
+                    <input type="number" name="edad" placeholder="Tu edad" min="1" max="120" required>
+                </label>
+
+                <label class="field">
+                    <span class="field-icon" aria-hidden="true">◉</span>
+                    <input type="text" name="color" placeholder="Tu color favorito" required>
+                </label>
+                <p class="hint">Ej. rojo, azul, verde, morado, amarillo...</p>
+
+                <label class="field">
+                    <span class="field-icon" aria-hidden="true">♣</span>
+                    <input type="text" name="animal" placeholder="Tu animal favorito" required>
+                </label>
+                <p class="hint">Ej. perro, gato, águila, león, delfín...</p>
+
+                <div class="crystal" aria-hidden="true"><span>✦</span></div>
+
+                <button class="submit-button" type="submit"><span aria-hidden="true">✎</span> Revelar mi destino</button>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>

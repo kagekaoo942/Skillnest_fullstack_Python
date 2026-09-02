@@ -1,0 +1,54 @@
+
+:root {
+	--night: #08091e;
+	--night-soft: #11122f;
+	--card: #f7f7f8;
+	--ink: #292937;
+	--muted: #777783;
+	--purple: #861de8;
+	--purple-dark: #5e08d4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	overflow-x: hidden;
+	color: var(--ink);
+	font-family: Georgia, 'Times New Roman', serif;
+	background-color: var(--night);
+	background-image: radial-gradient(circle at 8% 31%, #86869b 0 7px, transparent 8px), radial-gradient(circle at 86% 29%, #77788e 0 12px, transparent 13px), radial-gradient(circle at 17% 65%, #67687e 0 18px, transparent 19px), radial-gradient(circle at 81% 71%, #55566e 0 20px, transparent 21px), radial-gradient(circle at 50% 45%, #25264b 0, var(--night) 58%);
+	transition: background-color .25s ease;
+}
+
+body::before, body::after { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .65; background-image: radial-gradient(circle, #c9c9d4 0 2px, transparent 2.5px); background-size: 122px 91px; }
+body::after { background-size: 187px 143px; background-position: 46px 24px; opacity: .34; }
+
+.page-shell { min-height: 100vh; display: grid; place-items: center; padding: 58px 20px 30px; position: relative; z-index: 1; }
+.destiny-card { width: min(390px, 100%); overflow: hidden; border-radius: 12px; background: var(--card); box-shadow: 0 22px 55px #0008; animation: arrive .65s ease both; }
+.card-header { min-height: 180px; padding: 20px 20px 18px; display: grid; place-items: center; align-content: center; text-align: center; color: white; background: linear-gradient(135deg, #383950, #1e203a); }
+.moon-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: white; font-size: 29px; background: #7317df; box-shadow: 0 5px 18px #6412c688; }
+h1 { margin: 12px 0 4px; font-size: 25px; font-weight: 700; }
+.card-header p { margin: 0; font: 11px Arial, sans-serif; opacity: .85; }
+.destiny-form { padding: 18px 18px 20px; }
+.field { height: 35px; display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 0 10px; border: 1px solid #e6e6ea; border-radius: 8px; background: white; box-shadow: 0 2px 7px #2929370a; }
+.field-icon { color: #444454; font-size: 13px; }
+input { width: 100%; border: 0; outline: 0; color: var(--ink); font: 12px Arial, sans-serif; background: transparent; }
+input::placeholder { color: #30303c; opacity: 1; }
+.hint { margin: 4px 10px 0; color: var(--muted); font: 9px Arial, sans-serif; }
+.crystal { width: 72px; height: 72px; display: grid; place-items: center; margin: 13px auto 18px; border-radius: 50%; color: white; font-size: 25px; background: radial-gradient(circle at 32% 25%, #fff, #afbaff 18%, #7b83dc 62%, #d8dcff 100%); box-shadow: 0 4px 8px #4f56a455, inset 8px 7px 13px #ffffffaa; }
+.submit-button { min-height: 34px; width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 7px; border: 0; border-radius: 8px; color: white; cursor: pointer; text-decoration: none; font: 700 13px Arial, sans-serif; background: linear-gradient(100deg, var(--purple), var(--purple-dark)); box-shadow: 0 5px 13px #7414d844; transition: transform .2s ease, filter .2s ease; }
+.submit-button:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.theme-check { position: absolute; opacity: 0; }
+.theme-toggle { position: fixed; top: 38px; right: 16px; z-index: 3; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; color: #f9b42b; cursor: pointer; font-size: 21px; background: #4a4b54; box-shadow: 0 4px 15px #0005; }
+.theme-check:checked ~ .page-shell { --night: #18202e; }
+.result-card { padding: 42px 32px; text-align: center; }
+.result-card h1 { font-size: 23px; }
+.fortune { margin: 22px 0 30px; line-height: 1.6; font: 15px Arial, sans-serif; }
+.orb { position: fixed; width: 90px; height: 90px; border-radius: 50%; background: #848598; opacity: .6; filter: blur(.2px); }
+.orb-one { left: -42px; top: 31%; }
+.orb-two { right: -50px; top: 65%; width: 105px; height: 105px; }
+
+@keyframes arrive { from { opacity: 0; transform: translateY(16px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 480px) { .page-shell { padding-top: 72px; } .destiny-card { width: min(370px, 100%); } .theme-toggle { top: 18px; right: 14px; } }

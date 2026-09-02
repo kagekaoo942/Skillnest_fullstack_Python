@@ -63,9 +63,9 @@ def index():
 
     else:
 
-        # Si no existe, inicializamos el contador.
+        # La primera carga comienza en cero.
 
-        session["visitas"] = 1
+        session["visitas"] = 0
 
 
     # ------------------------------------------------------
@@ -110,9 +110,18 @@ def sumar_dos():
     session["visitas"] += 2
 
 
-    # Volvemos a la página principal.
+    # Mostramos la página directamente para no sumar otra visita
+    # al volver a pasar por la ruta principal.
 
-    return redirect(url_for("index"))
+    if "reinicios" not in session:
+
+        session["reinicios"] = 0
+
+    return render_template(
+        "index.html",
+        visitas=session["visitas"],
+        reinicios=session["reinicios"]
+    )
 
 
 # ==========================================================
@@ -146,9 +155,13 @@ def reiniciar():
     session["visitas"] = 0
 
 
-    # Volver a la página principal.
+    # Mostramos la página directamente para conservar el cero.
 
-    return redirect(url_for("index"))
+    return render_template(
+        "index.html",
+        visitas=session["visitas"],
+        reinicios=session["reinicios"]
+    )
 
 
 # ==========================================================
