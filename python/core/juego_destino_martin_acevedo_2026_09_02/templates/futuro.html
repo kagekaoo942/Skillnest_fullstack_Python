@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tu destino</title>
-	<link rel="stylesheet" href="../static/futuro.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='futuro.css') }}">
 </head>
+
 <body>
 	<div class="orb orb-one"></div>
 	<div class="orb orb-two"></div>
@@ -14,33 +16,37 @@
 			<header class="card-header">
 				<div class="moon-icon">☼</div>
 				<h1>Tu Destino ha sido Revelado</h1>
-				<p>Las estrellas han hablado, Jane</p>
+				<p>Las estrellas han hablado, {{ datos.nombre }}</p>
 			</header>
 
 			<div class="result-content">
 				<div class="fortune-message">
 					<strong>★</strong>
-					<p>Encontrarás el verdadero amor en los próximos meses. Tu corazón se llenará de alegría.</p>
+					<p>{{ mensaje }}</p>
 				</div>
 				<div class="details-grid">
 					<article class="detail-box">
 						<h2>◉ Tu Color</h2>
-						<span class="color-dot"></span>
-						<p>Tu preferencia por el color <b>verde</b> revela tu afinidad natural y descubrimiento.</p>
+						<span class="color-dot {{ color_class }}"></span>
+						<p>Tu preferencia por el color <b>{{ datos.color }}</b> revela tu afinidad natural y
+							descubrimiento.</p>
 					</article>
 					<article class="detail-box">
 						<h2>♣ Tu Animal</h2>
-						<p>Tu conexión con el <b>gato</b> simboliza tu naturaleza de independencia y misterio.</p>
+						<p>Tu conexión con el <b>{{ datos.animal }}</b> simboliza tu naturaleza de independencia y
+							misterio.</p>
 					</article>
 				</div>
 				<h2 class="lucky-title">Tu número de la suerte</h2>
-				<div class="lucky-number">72</div>
+				<div class="lucky-number">{{ numero_suerte }}</div>
 				<p class="number-note">Este número te acompañará en momentos importantes.</p>
-				<div class="age-message">A tus <b>18 años</b>, estás en un momento favorable para aprovechar nuevas oportunidades.</div>
-				<a class="submit-button" href="index.html">⟳ Consultar de nuevo</a>
+				<div class="age-message">A tus <b>{{ datos.edad }} años</b>, estás en un momento favorable para
+					aprovechar nuevas oportunidades.</div>
+				<a class="submit-button" href="{{ url_for('index') }}">⟳ Consultar de nuevo</a>
 			</div>
-			<footer class="result-footer">Las estrellas te han hablado hoy: Jane.</footer>
+			<footer class="result-footer">Las estrellas te han hablado hoy: {{ datos.nombre }}.</footer>
 		</section>
 	</main>
 </body>
+
 </html>
