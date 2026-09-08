@@ -76,6 +76,12 @@ def mostrar_mascotas_por_tipo(tipo):
     return render_template("index.html", mascotas=mascotas)
 
 
+@app.route("/mascotas/perros")
+def mostrar_perros():
+    mascotas = Mascota.get_by_tipo("Perro")
+    return render_template("index.html", mascotas=mascotas)
+
+
 # ==========================================================
 # EJECUTAR SERVIDOR
 # ==========================================================

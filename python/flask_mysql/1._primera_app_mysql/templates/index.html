@@ -16,7 +16,13 @@
 
 <body>
 
-    <h1>Listado de Mascotas</h1>
+    <h1>Las mascotas</h1>
+
+    <p>
+        <a href="{{ url_for('index') }}">Todas</a>
+        |
+        <a href="{{ url_for('mostrar_perros') }}">Solo perros</a>
+    </p>
 
 
     {% if mascotas %}
@@ -27,17 +33,16 @@
 
                 <li>
 
+                    <p><b>ID:</b> {{ mascota.id }}</p>
+
                     <strong>
-                        {{ mascota.nombre }}
+                        Nombre: {{ mascota.nombre }}
                     </strong>
 
-                    -
-
-                    {{ mascota.tipo }}
-
-                    -
-
-                    {{ mascota.color }}
+                    <p><b>Tipo:</b> {{ mascota.tipo }}</p>
+                    <p><b>Color:</b> {{ mascota.color }}</p>
+                    <p><b>Creado:</b> {{ mascota.created_at }}</p>
+                    <p><b>Actualizado:</b> {{ mascota.updated_at }}</p>
 
                     <a href="{{ url_for('mostrar_mascota', id_mascota=mascota.id) }}">
                         Ver detalles
