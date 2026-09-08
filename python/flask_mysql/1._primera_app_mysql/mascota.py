@@ -97,3 +97,42 @@ class Mascota:
         # --------------------------------------------------
 
         return mascotas
+
+    @classmethod
+    def get_by_id(cls, id_mascota):
+        query = """
+            SELECT *
+            FROM mascotas
+            WHERE id = %(id_mascota)s;
+        """
+        data = {"id_mascota": id_mascota}
+        resultados = connectToMySQL("primera_flask").query_db(query, data)
+
+        if resultados:
+            return cls(resultados[0])
+        return None
+
+    @classmethod
+    def get_by_name(cls, nombre):
+        query = """
+            SELECT *
+            FROM mascotas
+            WHERE nombre = %(nombre_mascota)s;
+        """
+        data = {"nombre_mascota": nombre}
+        resultados = connectToMySQL("primera_flask").query_db(query, data)
+
+        if resultados:
+            return cls(resultados[0])
+        return None
+
+    @classmethod
+    def get_by_tipo(cls, tipo):
+        query = """
+            SELECT *
+            FROM mascotas
+            WHERE tipo = %(tipo_mascota)s;
+        """
+        data = {"tipo_mascota": tipo}
+        resultados = connectToMySQL("primera_flask").query_db(query, data)
+        return [cls(mascota) for mascota in resultados]
