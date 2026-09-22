@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tacos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+    <main class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4 page-heading">
+            <div><h1>Todos los tacos</h1><p class="text-muted mb-0">Listado de tacos registrados.</p></div>
+            <a href="{{ url_for('index') }}" class="btn btn-primary">Crear taco</a>
+        </div>
+        {% if todos_tacos %}
+            <div class="row g-4">
+                {% for taco in todos_tacos %}
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <h2 class="h4 text-primary">Taco {{ taco.id }}</h2>
+                                <p class="mb-3"><strong>Tortilla:</strong> {{ taco.tortilla }}<br><strong>Guiso:</strong> {{ taco.guiso }}<br><strong>Salsa:</strong> {{ taco.salsa }}</p>
+                                <a href="{{ url_for('detalle', taco_id=taco.id) }}" class="btn btn-outline-primary">Ver taco</a>
+                            </div>
+                            <div class="card-footer bg-white border-0 text-muted small">{{ taco.created_at }}</div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state"><h2>No hay tacos registrados.</h2><a href="{{ url_for('index') }}" class="btn btn-primary">Crear el primero</a></div>
+        {% endif %}
+    </main>
+</body>
+</html>
