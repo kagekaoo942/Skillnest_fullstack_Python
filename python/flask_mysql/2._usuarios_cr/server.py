@@ -51,5 +51,67 @@ def crear_usuario():
     return redirect(url_for("usuarios"))
 
 
+@app.route("/usuarios/<int:user_id>")
+def ver_usuario(user_id):
+    usuario = Usuario.get_by_id(user_id)
+    if usuario is None:
+        return "Usuario no encontrado", 404
+    return render_template("usuario.html", usuario=usuario)
+
+
+@app.route("/usuarios/editar/<int:user_id>")
+def editar_usuario(user_id):
+    usuario = Usuario.get_by_id(user_id)
+    if usuario is None:
+        return "Usuario no encontrado", 404
+    return render_template("usuario_editar.html", usuario=usuario)
+
+
+@app.route("/usuarios/<int:user_id>/actualizar", methods=["POST"])
+def actualizar_usuario(user_id):
+    nombre = request.form["nombre"].strip()
+    apellido = request.form["apellido"].strip()
+    email = request.form["email"].strip()
+    usuario = Usuario.get_by_id(user_id)
+
+    if usuario is None:
+        return "Usuario no encontrado", 404
+
+    if not nombre or not apellido or not email:
+        return render_template(
+            "usuario_editar.html",
+            usuario=usuario,
+            error="Todos los campos son obligatorios.",
+        ), 400
+
+    resultado = Usuario.update({
+        "id": user_id,
+        "nombre": nombre,
+        "apellido": apellido,
+        "email": email,
+    })
+
+    if resultado is False:
+        return render_template(
+            "usuario_editar.html",
+            usuario=usuario,
+            error="No fue posible actualizar el usuario.",
+        ), 500
+
+    return redirect(url_for("usuarios"))
+
+
+@app.route("/usuarios/borrar/<int:user_id>")
+def borrar_usuario(user_id):
+    if Usuario.get_by_id(user_id) is None:
+        return "Usuario no encontrado", 404
+
+    resultado = Usuario.delete(user_id)
+    if resultado is False:
+        return "No fue posible eliminar el usuario.", 500
+
+    return redirect(url_for("usuarios"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)

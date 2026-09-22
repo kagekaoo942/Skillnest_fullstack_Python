@@ -20,6 +20,21 @@ h1 {
     text-align: center;
 }
 
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.detail-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 35px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
 .form-control,
 .btn {
     border-radius: 6px;
@@ -30,5 +45,9 @@ h1 {
         align-items: flex-start !important;
         flex-direction: column;
         gap: 15px;
+    }
+
+    .acciones .btn {
+        width: 100%;
     }
 }
