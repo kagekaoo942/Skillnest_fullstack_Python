@@ -1,7 +1,11 @@
 import pymysql.cursors
 
-class MySQLConnection:
+
+class ConexionMySQL:
+    """Administra la conexión con MySQL y ejecuta consultas."""
+
     def __init__(self, db):
+        # DictCursor entrega cada fila como un diccionario.
         self.connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -13,8 +17,10 @@ class MySQLConnection:
         )
 
     def query_db(self, query, data=None):
+        """Ejecuta una consulta y devuelve filas o el resultado de escritura."""
         with self.connection.cursor() as cursor:
             try:
+                # PyMySQL enlaza los datos para evitar concatenarlos al SQL.
                 cursor.execute(query, data)
 
                 if query.strip().lower().startswith("select"):
@@ -30,8 +36,10 @@ class MySQLConnection:
                 return False
 
             finally:
+                # Cada instancia atiende una consulta y luego libera la conexión.
                 self.connection.close()
 
-def connectToMySQL(db):
-    return MySQLConnection(db)
 
+def connectToMySQL(db):
+    """Crea una conexión para la base de datos indicada."""
+    return ConexionMySQL(db)

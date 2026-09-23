@@ -36,7 +36,7 @@ DELETE → Eliminar usuario
 La aplicación utilizará:
 
 ```text
-Base de datos: esquema_usuarios
+Base de datos: crud_usuarios
 Tabla: usuarios
 ```
 
@@ -58,9 +58,9 @@ usuarios
 ## `flask_app/bd/esquema_usuarios.sql`
 
 ```sql
-CREATE DATABASE IF NOT EXISTS esquema_usuarios;
+CREATE DATABASE IF NOT EXISTS crud_usuarios;
 
-USE esquema_usuarios;
+USE crud_usuarios;
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -191,8 +191,12 @@ app.secret_key = "clave-secreta-desarrollo"
 ```python
 import pymysql.cursors
 
-class MySQLConnection:
+
+class ConexionMySQL:
+    """Administra la conexión con MySQL y ejecuta consultas."""
+
     def __init__(self, db):
+        # DictCursor entrega cada fila como un diccionario.
         self.connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -204,8 +208,10 @@ class MySQLConnection:
         )
 
     def query_db(self, query, data=None):
+        """Ejecuta una consulta y devuelve filas o el resultado de escritura."""
         with self.connection.cursor() as cursor:
             try:
+                # PyMySQL enlaza los datos para evitar concatenarlos al SQL.
                 cursor.execute(query, data)
 
                 if query.strip().lower().startswith("select"):
@@ -221,10 +227,13 @@ class MySQLConnection:
                 return False
 
             finally:
+                # Cada instancia atiende una consulta y luego libera la conexión.
                 self.connection.close()
 
+
 def connectToMySQL(db):
-    return MySQLConnection(db)
+    """Crea una conexión para la base de datos indicada."""
+    return ConexionMySQL(db)
 ```
 
 > Configura `user` y `password` según tu instalación local de MySQL.
@@ -253,7 +262,7 @@ class Usuario:
             ORDER BY id;
         """
 
-        resultados = connectToMySQL("esquema_usuarios").query_db(query)
+        resultados = connectToMySQL("crud_usuarios").query_db(query)
 
         usuarios = []
 
@@ -274,7 +283,7 @@ class Usuario:
             "id": id
         }
 
-        resultados = connectToMySQL("esquema_usuarios").query_db(query, data)
+        resultados = connectToMySQL("crud_usuarios").query_db(query, data)
 
         if resultados:
             return cls(resultados[0])
@@ -290,7 +299,7 @@ class Usuario:
             (%(nombre)s, %(apellido)s, %(email)s, NOW(), NOW());
         """
 
-        return connectToMySQL("esquema_usuarios").query_db(query, data)
+        return connectToMySQL("crud_usuarios").query_db(query, data)
 
     @classmethod
     def update(cls, data):
@@ -304,7 +313,7 @@ class Usuario:
             WHERE id = %(id)s;
         """
 
-        return connectToMySQL("esquema_usuarios").query_db(query, data)
+        return connectToMySQL("crud_usuarios").query_db(query, data)
 
     @classmethod
     def delete(cls, data):
@@ -313,7 +322,7 @@ class Usuario:
             WHERE id = %(id)s;
         """
 
-        return connectToMySQL("esquema_usuarios").query_db(query, data)
+        return connectToMySQL("crud_usuarios").query_db(query, data)
 ```
 
 ---
