@@ -1,0 +1,80 @@
+:root {
+    --color-page: #f5f6f8;
+    --color-text: #212529;
+    --color-muted: #6c757d;
+    --color-surface: #ffffff;
+    --color-border: #dee2e6;
+    --color-focus: rgba(13, 110, 253, 0.25);
+    --radius-card: 10px;
+    --radius-control: 7px;
+    --radius-alert: 8px;
+    --shadow-card: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --font-body: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-page);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+.card {
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-card);
+}
+
+.form-control,
+.form-select,
+.btn {
+    border-radius: var(--radius-control);
+}
+
+.form-control,
+.form-select {
+    min-height: 44px;
+}
+
+.form-label {
+    font-weight: 600;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.25rem var(--color-focus);
+}
+
+.list-group-item {
+    padding: 14px 16px;
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.alert {
+    border-radius: var(--radius-alert);
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+@media (max-width: 575.98px) {
+    .container.py-5 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .card-body.p-4 {
+        padding: 1.25rem;
+    }
+}
