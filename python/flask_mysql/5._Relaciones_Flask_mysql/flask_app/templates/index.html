@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if tacos is defined %}Tacos{% else %}Crear taco{% endif %} | Restaurante y Tacos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container py-5">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">RELACIÓN UNO A MUCHOS</p>
+            <h1>{% if tacos is defined %}Tacos registrados{% else %}Crear un taco{% endif %}</h1>
+            <p class="text-muted mb-0">
+                {% if tacos is defined %}
+                    Explora los tacos y el restaurante al que pertenece cada uno.
+                {% else %}
+                    Asocia cada taco con el restaurante que lo prepara.
+                {% endif %}
+            </p>
+        </div>
+        <nav class="page-actions" aria-label="Navegación principal">
+            <a class="btn btn-outline-primary" href="{{ url_for('tacos') }}">Ver tacos</a>
+            <a class="btn btn-outline-secondary" href="{{ url_for('restaurantes') }}">Restaurantes</a>
+        </nav>
+    </header>
+
+    {% if error %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+
+    {% if todos_restaurantes is defined %}
+        <section class="form-card" aria-labelledby="taco-form-title">
+            <h2 class="section-title" id="taco-form-title">Datos del taco</h2>
+            <form action="{{ url_for('crear') }}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="tortilla">Tortilla</label>
+                    <input class="form-control" type="text" id="tortilla" name="tortilla" maxlength="45" value="{{ datos.tortilla if datos else '' }}" autocomplete="off" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="guiso">Guiso</label>
+                    <input class="form-control" type="text" id="guiso" name="guiso" maxlength="45" value="{{ datos.guiso if datos else '' }}" autocomplete="off" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" for="salsa">Salsa</label>
+                    <input class="form-control" type="text" id="salsa" name="salsa" maxlength="45" value="{{ datos.salsa if datos else '' }}" autocomplete="off" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" for="restaurante_id">Restaurante</label>
+                    <select class="form-select" id="restaurante_id" name="restaurante_id" required>
+                        <option value="">Selecciona un restaurante</option>
+                        {% for restaurante in todos_restaurantes %}
+                            <option value="{{ restaurante.id }}" {% if datos and datos.restaurante_id|string == restaurante.id|string %}selected{% endif %}>
+                                {{ restaurante.nombre }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    {% if not todos_restaurantes %}
+                        <p class="form-hint">Primero registra al menos un restaurante en la base de datos.</p>
+                    {% endif %}
+                </div>
+                <button class="btn btn-primary" type="submit" {% if not todos_restaurantes %}disabled{% endif %}>Crear taco</button>
+            </form>
+        </section>
+    {% elif tacos is defined %}
+        {% if tacos %}
+            <section aria-label="Listado de tacos">
+                <div class="row g-4">
+                    {% for taco in tacos %}
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <article class="card taco-card h-100">
+                                <div class="card-body">
+                                    <div class="taco-card__eyebrow">TACO #{{ taco.id }}</div>
+                                    <h2 class="h4">{{ taco.guiso }}</h2>
+                                    <dl class="taco-details">
+                                        <div><dt>Tortilla</dt><dd>{{ taco.tortilla }}</dd></div>
+                                        <div><dt>Salsa</dt><dd>{{ taco.salsa }}</dd></div>
+                                    </dl>
+                                    <a class="btn btn-success btn-sm" href="{{ url_for('restaurante', id=taco.restaurante_id) }}">Ver restaurante</a>
+                                </div>
+                            </article>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        {% else %}
+            <div class="empty-state" role="status">
+                <h2 class="h4">Todavía no hay tacos</h2>
+                <p class="text-muted">Crea el primero y asígnalo a un restaurante.</p>
+                <a class="btn btn-primary" href="{{ url_for('index') }}">Crear taco</a>
+            </div>
+        {% endif %}
+    {% endif %}
+</main>
+</body>
+</html>

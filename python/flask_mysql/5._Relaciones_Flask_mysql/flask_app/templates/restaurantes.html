@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurantes | Restaurante y Tacos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container py-5">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">DIRECTORIO</p>
+            <h1>Restaurantes</h1>
+            <p class="text-muted mb-0">Elige un restaurante para ver los tacos relacionados.</p>
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('index') }}">Crear taco</a>
+    </header>
+
+    {% if restaurantes %}
+        <section class="row g-4" aria-label="Restaurantes disponibles">
+            {% for restaurante in restaurantes %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card restaurant-card h-100">
+                        <div class="card-body">
+                            <div class="restaurant-card__number">RESTAURANTE {{ "%02d"|format(loop.index) }}</div>
+                            <h2 class="h4">{{ restaurante.nombre }}</h2>
+                            <p class="text-muted">ID: {{ restaurante.id }}</p>
+                            <a class="btn btn-success" href="{{ url_for('restaurante', id=restaurante.id) }}">Ver tacos</a>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </section>
+    {% else %}
+        <div class="empty-state" role="status">
+            <h2 class="h4">No hay restaurantes registrados</h2>
+            <p class="text-muted">Carga los restaurantes de ejemplo desde <code>esquema_tacos.sql</code>.</p>
+        </div>
+    {% endif %}
+</main>
+</body>
+</html>

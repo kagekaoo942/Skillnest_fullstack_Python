@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ restaurante.nombre }} | Restaurante y Tacos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="container py-5">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">DETALLE DEL RESTAURANTE · ID {{ restaurante.id }}</p>
+            <h1>{{ restaurante.nombre }}</h1>
+            <p class="text-muted mb-0">Tacos pertenecientes a este restaurante.</p>
+        </div>
+        <nav class="page-actions" aria-label="Navegación del restaurante">
+            <a class="btn btn-outline-secondary" href="{{ url_for('restaurantes') }}">Restaurantes</a>
+            <a class="btn btn-primary" href="{{ url_for('index') }}">Crear taco</a>
+        </nav>
+    </header>
+
+    {% if restaurante.tacos %}
+        <section class="row g-4" aria-label="Tacos de {{ restaurante.nombre }}">
+            {% for taco in restaurante.tacos %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card taco-card h-100">
+                        <div class="card-body">
+                            <div class="taco-card__eyebrow">TACO #{{ taco.id }}</div>
+                            <h2 class="h4">{{ taco.guiso }}</h2>
+                            <dl class="taco-details">
+                                <div><dt>Tortilla</dt><dd>{{ taco.tortilla }}</dd></div>
+                                <div><dt>Salsa</dt><dd>{{ taco.salsa }}</dd></div>
+                            </dl>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </section>
+    {% else %}
+        <div class="empty-state" role="status">
+            <div class="empty-state__mark" aria-hidden="true">+</div>
+            <h2 class="h4">Este restaurante todavía no tiene tacos registrados.</h2>
+            <p class="text-muted">Cuando agregues un taco y lo asignes a este restaurante, aparecerá aquí.</p>
+            <a class="btn btn-primary" href="{{ url_for('index') }}">Agregar el primer taco</a>
+        </div>
+    {% endif %}
+</main>
+</body>
+</html>
