@@ -1,0 +1,83 @@
+:root {
+    --color-page: #f5f6f8;
+    --color-surface: #ffffff;
+    --color-text: #212529;
+    --color-muted: #6c757d;
+    --color-brand: #0d6efd;
+    --color-success: #198754;
+    --color-danger: #dc3545;
+    --color-info: #0dcaf0;
+    --color-focus: rgba(13, 110, 253, 0.28);
+    --font-body: Arial, Helvetica, sans-serif;
+    --radius-card: 10px;
+    --radius-control: 7px;
+    --radius-alert: 8px;
+    --shadow-panel: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+
+    --bs-body-color: var(--color-text);
+    --bs-body-bg: var(--color-page);
+    --bs-body-font-family: var(--font-body);
+    --bs-link-color: var(--color-brand);
+    --bs-link-hover-color: #0a58ca;
+    --bs-focus-ring-color: var(--color-focus);
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-page);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+.page-container {
+    max-width: 1080px;
+}
+
+.page-title {
+    margin: 0;
+    color: var(--color-text);
+}
+
+.user-card {
+    --bs-card-bg: var(--color-surface);
+    --bs-card-border-radius: var(--radius-card);
+    --bs-card-box-shadow: var(--shadow-panel);
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-panel);
+}
+
+.form-control {
+    --bs-border-radius: var(--radius-control);
+    border-radius: var(--radius-control);
+}
+
+.form-control:focus-visible,
+.btn:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+.btn {
+    --bs-btn-border-radius: var(--radius-control);
+    border-radius: var(--radius-control);
+}
+
+.table {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.alert {
+    --bs-alert-border-radius: var(--radius-alert);
+    border-radius: var(--radius-alert);
+}
+
+.flash-region .alert:last-child {
+    margin-bottom: 0;
+}
