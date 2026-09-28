@@ -45,4 +45,4 @@ class MySQLConnection:
 
 def connectToMySQL(db=None):
     """Crea una conexión usando DB_NAME cuando no se indica otra base."""
-    return MySQLConnection(db or os.getenv("DB_NAME", "esquema_loginreg"))
+    return MySQLConnection(db or os.getenv("DB_NAME", "esquema_secure"))

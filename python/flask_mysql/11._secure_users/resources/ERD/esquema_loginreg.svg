@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="440" viewBox="0 0 760 440" role="img" aria-labelledby="title description">
+  <title id="title">ERD de esquema_loginreg</title>
+  <desc id="description">Tabla usuarios con clave primaria id, correo electrónico único, hash de contraseña y fechas de creación y actualización.</desc>
+  <rect width="760" height="440" fill="#f8f9fa"/>
+  <rect x="130" y="40" width="500" height="360" rx="10" fill="#ffffff" stroke="#212529" stroke-width="2"/>
+  <path d="M140 40h480a10 10 0 0 1 10 10v52H130V50a10 10 0 0 1 10-10Z" fill="#212529"/>
+  <text x="380" y="77" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">usuarios</text>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#212529">
+    <text x="165" y="140" font-weight="700">id</text><text x="355" y="140">INT AUTO_INCREMENT</text><text x="550" y="140" fill="#0d6efd" font-weight="700">PK</text>
+    <text x="165" y="185" font-weight="700">nombre</text><text x="355" y="185">VARCHAR(100) NOT NULL</text>
+    <text x="165" y="230" font-weight="700">apellido</text><text x="355" y="230">VARCHAR(100) NOT NULL</text>
+    <text x="165" y="275" font-weight="700">email</text><text x="355" y="275">VARCHAR(150) NOT NULL</text><text x="540" y="275" fill="#198754" font-weight="700">UNIQUE</text>
+    <text x="165" y="320" font-weight="700">password</text><text x="355" y="320">VARCHAR(255) — Bcrypt hash</text>
+    <text x="165" y="365" font-weight="700">created_at / updated_at</text><text x="390" y="365">DATETIME</text>
+  </g>
+  <g stroke="#dee2e6" stroke-width="1">
+    <path d="M150 153h460M150 198h460M150 243h460M150 288h460M150 333h460"/>
+  </g>
+</svg>

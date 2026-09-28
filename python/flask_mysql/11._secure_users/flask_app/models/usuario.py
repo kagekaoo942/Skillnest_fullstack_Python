@@ -107,4 +107,6 @@ class Usuario:
             WHERE email = %(email)s;
         """
         resultados = connectToMySQL().query_db(query, datos)
+        if resultados is False:
+            return None
         return bool(resultados)

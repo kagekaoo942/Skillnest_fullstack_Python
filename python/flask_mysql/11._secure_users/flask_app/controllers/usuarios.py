@@ -30,7 +30,16 @@ def registrar():
     if not Usuario.validar_usuario(datos):
         return redirect(url_for("registro"))
 
-    if Usuario.existe_email({"email": datos["email"]}):
+    email_ya_registrado = Usuario.existe_email({"email": datos["email"]})
+    if email_ya_registrado is None:
+        flash(
+            "No fue posible conectar con la base de datos. "
+            "Revisa DB_HOST, DB_USER, DB_PASSWORD y DB_NAME.",
+            "general",
+        )
+        return redirect(url_for("registro"))
+
+    if email_ya_registrado:
         flash("El email ya está registrado.", "email")
         return redirect(url_for("registro"))
 
@@ -58,11 +67,13 @@ def login():
     password = request.form.get("password", "")
 
     if not email or not password:
+        session.clear()
         flash("Email o contraseña incorrectos.", "login")
         return redirect(url_for("index"))
 
     usuario = Usuario.buscar_por_email({"email": email})
     if usuario is None or not bcrypt.check_password_hash(usuario.password, password):
+        session.clear()
         flash("Email o contraseña incorrectos.", "login")
         return redirect(url_for("index"))
 
