@@ -1,0 +1,203 @@
+:root {
+    --color-page: #ffffff;
+    --color-surface: #ffffff;
+    --color-text: #171717;
+    --color-border: #171717;
+    --color-row-alt: #ededed;
+    --color-danger: #b42318;
+    --color-focus: rgba(13, 110, 253, 0.3);
+    --font-body: Arial, Helvetica, sans-serif;
+    --radius-card: 10px;
+    --radius-control: 3px;
+    --radius-alert: 2px;
+    --shadow-card: none;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-page);
+    color: var(--color-text);
+    font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 700;
+}
+
+.page-shell {
+    width: min(calc(100% - 3rem), 1080px);
+    margin-inline: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.list-header h1,
+.form-page h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+}
+
+.new-order-link,
+.home-link {
+    color: #0d6efd;
+    text-decoration: underline;
+}
+
+.new-order-link {
+    white-space: nowrap;
+}
+
+.flash-region {
+    margin-bottom: 0.75rem;
+}
+
+.flash-region .alert {
+    margin-bottom: 0.35rem;
+}
+
+.order-table-wrap {
+    width: 100%;
+    max-width: 760px;
+}
+
+.order-table {
+    --bs-table-color: var(--color-text);
+    --bs-table-bg: var(--color-surface);
+    --bs-table-border-color: var(--color-border);
+    width: 100%;
+    border: 2px solid var(--color-border);
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.order-table th,
+.order-table td {
+    padding: 0.35rem 0.45rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.order-table th {
+    background-color: #e5e5e5;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.order-table tbody tr:nth-child(even) > * {
+    --bs-table-bg: var(--color-row-alt);
+}
+
+.empty-state {
+    width: 100%;
+    max-width: 760px;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+}
+
+.form-page h1 {
+    margin-bottom: 0.45rem;
+}
+
+.form-page .flash-region .alert {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-danger);
+    font-size: 0.95rem;
+}
+
+.order-form {
+    width: min(100%, 520px);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-row .form-label {
+    margin: 0;
+    font-weight: 400;
+}
+
+.order-form .form-control {
+    min-height: 2rem;
+    padding: 0.2rem 0.4rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+    background: var(--color-surface);
+}
+
+.order-form .form-control:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-top: 0.9rem;
+}
+
+.form-actions .btn-success {
+    --bs-btn-color: var(--color-text);
+    --bs-btn-bg: var(--color-surface);
+    --bs-btn-border-color: var(--color-border);
+    --bs-btn-hover-color: var(--color-text);
+    --bs-btn-hover-bg: var(--color-row-alt);
+    --bs-btn-hover-border-color: var(--color-border);
+    --bs-btn-active-color: var(--color-text);
+    --bs-btn-active-bg: var(--color-row-alt);
+    --bs-btn-active-border-color: var(--color-border);
+    padding: 0.2rem 0.75rem;
+    border-width: 2px;
+    border-radius: var(--radius-control);
+    font-weight: 700;
+}
+
+.home-link {
+    margin-left: 0.2rem;
+}
+
+@media (max-width: 576px) {
+    .page-shell {
+        width: min(calc(100% - 2rem), 1080px);
+        padding-top: 1.5rem;
+    }
+
+    .list-header {
+        flex-wrap: wrap;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+        margin-bottom: 0.85rem;
+    }
+
+    .form-actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+    }
+}

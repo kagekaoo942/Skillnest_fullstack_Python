@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Pedido</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main class="page-shell form-page">
+    <h1>Nuevo Pedido</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <section class="flash-region" aria-label="Errores y notificaciones" aria-live="polite">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endwith %}
+
+    <form class="order-form" action="{{ url_for('crear_pedido') }}" method="POST">
+        <div class="form-row">
+            <label for="nombre" class="form-label">Nombre Cliente</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" minlength="2" autocomplete="name" required>
+        </div>
+
+        <div class="form-row">
+            <label for="cantidad" class="form-label">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" class="form-control" min="1" step="1" inputmode="numeric" required>
+        </div>
+
+        <div class="form-row">
+            <label for="tipo_arepa" class="form-label">Relleno</label>
+            <input type="text" id="tipo_arepa" name="tipo_arepa" class="form-control" required>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Crear Pedido</button>
+            <a class="home-link" href="{{ url_for('pedidos') }}">Inicio</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
