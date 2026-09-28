@@ -1,0 +1,80 @@
+:root {
+    --followers-page-bg: #f5f6f8;
+    --followers-text: #212529;
+    --followers-muted: #6c757d;
+    --followers-font: Arial, Helvetica, sans-serif;
+    --followers-card-radius: 10px;
+    --followers-control-radius: 7px;
+    --followers-alert-radius: 8px;
+}
+
+.followers-page {
+    min-height: 100vh;
+    background-color: var(--followers-page-bg);
+    color: var(--followers-text);
+    font-family: var(--followers-font);
+}
+
+.page-heading {
+    max-width: 46rem;
+    margin-inline: auto;
+}
+
+.page-title,
+.section-heading {
+    color: var(--followers-text);
+    font-weight: 700;
+}
+
+.page-title {
+    margin-bottom: 0.65rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    letter-spacing: -0.035em;
+}
+
+.followers-page .page-description {
+    color: var(--followers-muted);
+    font-size: 1.05rem;
+}
+
+.section-heading {
+    font-size: 1.35rem;
+}
+
+.followers-card {
+    border-radius: var(--followers-card-radius);
+}
+
+.followers-page .form-control,
+.followers-page .form-select,
+.followers-page .btn {
+    border-radius: var(--followers-control-radius);
+}
+
+.followers-page .form-control:focus,
+.followers-page .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.16);
+}
+
+.followers-table {
+    vertical-align: middle;
+}
+
+.followers-table th {
+    white-space: nowrap;
+}
+
+.followers-alert {
+    border-radius: var(--followers-alert-radius);
+}
+
+@media (max-width: 575.98px) {
+    .followers-page > .container {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .page-heading {
+        margin-bottom: 2rem;
+    }
+}
