@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Mis Libros | BookHub{% endblock %}
+
+{% block contenido %}
+<header class="page-heading">
+    <h1>Mis Libros:</h1>
+    <a class="btn btn-primary btn-sm" href="{{ url_for('libros.nuevo') }}">+ Nuevo Libro</a>
+</header>
+
+<section aria-label="Mis libros">
+    {% if libros %}
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered align-middle book-table">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Favoritos</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                        <tr>
+                            <td>{{ libro.titulo }}</td>
+                            <td>{{ libro.autor }}</td>
+                            <td>{{ libro.genero }}</td>
+                            <td><time datetime="{{ libro.fecha_publicacion.isoformat() }}">{{ libro.fecha_publicacion.strftime('%Y-%m-%d') }}</time></td>
+                            <td>{{ libro.favoritos }}</td>
+                            <td class="table-actions">
+                                <a href="{{ url_for('libros.detalle', libro_id=libro.id) }}">Ver</a>
+                                <a href="{{ url_for('libros.editar', libro_id=libro.id) }}">Editar</a>
+                                <form action="{{ url_for('libros.borrar', libro_id=libro.id) }}" method="post" class="inline-form" onsubmit="return confirm('¿Borrar este libro?');">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="table-link table-link--danger">Borrar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="empty-message">Todavía no has agregado libros.</p>
+    {% endif %}
+</section>
+
+<section id="comunidad" class="community-section" aria-labelledby="community-title">
+    <h2 id="community-title">Libros de la Comunidad</h2>
+    {% if libros_comunidad %}
+        <div class="table-responsive">
+            <table class="table table-sm table-bordered align-middle book-table">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Género</th>
+                        <th scope="col">Publicado por</th>
+                        <th scope="col">Favoritos</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros_comunidad %}
+                        <tr>
+                            <td>{{ libro.titulo }}</td>
+                            <td>{{ libro.autor }}</td>
+                            <td>{{ libro.genero }}</td>
+                            <td>{{ libro.publicado_por }}</td>
+                            <td>{{ libro.favoritos }}</td>
+                            <td><a href="{{ url_for('libros.detalle', libro_id=libro.id) }}">Ver</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="empty-message">Aún no hay libros de otros usuarios.</p>
+    {% endif %}
+</section>
+{% endblock %}

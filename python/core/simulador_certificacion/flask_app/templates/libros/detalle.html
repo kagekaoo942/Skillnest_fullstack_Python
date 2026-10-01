@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ libro.titulo }} | BookHub{% endblock %}
+
+{% block contenido %}
+<article class="detail-panel" aria-labelledby="detail-title">
+    <div class="detail-main">
+        <div class="cover-placeholder" aria-label="Sin portada disponible">
+            <i class="ti ti-photo" aria-hidden="true"></i>
+        </div>
+        <div class="detail-copy">
+            <h1 id="detail-title">{{ libro.titulo }}</h1>
+            <p><strong>Autor:</strong> {{ libro.autor }}</p>
+            <p><strong>Género:</strong> {{ libro.genero }}</p>
+            <p><strong>Publicado por:</strong> {{ libro.publicado_por }}</p>
+            <p><strong>Fecha:</strong> <time datetime="{{ libro.fecha_publicacion.isoformat() }}">{{ libro.fecha_publicacion.strftime('%Y-%m-%d') }}</time></p>
+            {% if not es_favorito %}
+                <form action="{{ url_for('libros.agregar_favorito', libro_id=libro.id) }}" method="post">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-outline-secondary btn-sm favorite-button">
+                        <i class="ti ti-heart" aria-hidden="true"></i> Agregar a Favoritos
+                    </button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <section class="book-description" aria-labelledby="description-title">
+        <h2 id="description-title">Descripción:</h2>
+        <p>{{ libro.descripcion }}</p>
+    </section>
+</article>
+
+<section class="favorited-by" aria-labelledby="favorited-title">
+    <h2 id="favorited-title">Usuarios que agregaron este libro a favoritos ({{ libro.favoritos }})</h2>
+    {% if usuarios_favoritos %}
+        <ul class="list-group list-group-flush user-list">
+            {% for usuario in usuarios_favoritos %}
+                <li class="list-group-item">
+                    <span class="user-dot" aria-hidden="true"><i class="ti ti-user-circle"></i></span>
+                    {{ usuario.nombre }} {{ usuario.apellido }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted mb-0">Todavía no hay favoritos.</p>
+    {% endif %}
+</section>
+
+<div class="detail-toolbar">
+    <a href="{{ url_for('libros.mis_libros') }}">← Volver a Mis Libros</a>
+    {% if es_propietario %}
+        <div class="owner-actions">
+            <a href="{{ url_for('libros.editar', libro_id=libro.id) }}">Editar</a>
+            <form action="{{ url_for('libros.borrar', libro_id=libro.id) }}" method="post" class="inline-form" onsubmit="return confirm('¿Borrar este libro?');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" class="table-link table-link--danger">Borrar</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

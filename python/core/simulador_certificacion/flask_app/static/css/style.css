@@ -1,0 +1,546 @@
+/* BookHub wireframe: Bootstrap compacto, tabla clara y navegación oscura. */
+:root {
+    --hub-nav: #212529;
+    --hub-text: #212529;
+    --hub-muted: #6c757d;
+    --hub-border: #dee2e6;
+    --hub-link: #0d6efd;
+    --hub-danger: #dc3545;
+    --hub-surface: #ffffff;
+    --hub-soft: #f8f9fa;
+    --bs-primary: #0d6efd;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-body-bg: #ffffff;
+    --bs-body-color: var(--hub-text);
+    --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --bs-border-color: var(--hub-border);
+    --bs-link-color: var(--hub-link);
+    --bs-link-hover-color: #0a58ca;
+    --bs-border-radius: 4px;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: #fff;
+    color: var(--hub-text);
+    font-family: var(--bs-font-sans-serif);
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.app-container {
+    max-width: 1140px;
+}
+
+.main-content {
+    padding-top: 1.25rem;
+    padding-bottom: 3rem;
+}
+
+.app-navbar {
+    min-height: 44px;
+    padding: 0.15rem 0;
+    background: var(--hub-nav);
+}
+
+.app-navbar .app-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.app-navbar .navbar-brand {
+    margin-right: 1rem;
+    padding: 0.25rem 0;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.app-navbar .navbar-brand:hover,
+.app-navbar .nav-link:hover {
+    color: #ced4da;
+}
+
+.app-navbar .navbar-brand i {
+    margin-right: 0.25rem;
+}
+
+.app-nav-links {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 0.15rem;
+}
+
+.app-navbar .nav-link,
+.app-navbar .navbar-text {
+    padding: 0.35rem 0.55rem;
+    color: #f8f9fa;
+    font-size: 0.83rem;
+    text-decoration: none;
+}
+
+.app-user-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-left: auto;
+}
+
+.app-user-nav .btn {
+    min-height: 28px;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.75rem;
+}
+
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.page-heading h1,
+.page-heading-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.page-heading-title {
+    margin-bottom: 0.9rem;
+}
+
+.btn {
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.btn-sm {
+    min-height: 30px;
+    padding: 0.22rem 0.5rem;
+}
+
+.book-table {
+    margin-bottom: 0;
+    font-size: 0.8rem;
+}
+
+.book-table th,
+.book-table td {
+    padding: 0.35rem 0.45rem;
+    vertical-align: middle;
+}
+
+.book-table thead th {
+    background: #e9ecef;
+    color: #343a40;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.table-actions {
+    white-space: nowrap;
+}
+
+.table-actions > a,
+.table-link {
+    margin-right: 0.4rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--hub-link);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.table-actions > a:last-child,
+.table-actions > form:last-child .table-link {
+    margin-right: 0;
+}
+
+.table-link--danger {
+    color: var(--hub-danger);
+}
+
+.inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.community-section {
+    margin-top: 1.6rem;
+}
+
+.community-section h2 {
+    margin: 0 0 0.55rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.empty-message {
+    margin: 0.5rem 0 0;
+    color: var(--hub-muted);
+    font-size: 0.9rem;
+}
+
+/* Pantalla de acceso: los dos formularios se ven al mismo tiempo. */
+.auth-brand {
+    max-width: 1140px;
+    padding-top: 1.1rem;
+    text-align: center;
+}
+
+.auth-brand__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--hub-text);
+    font-size: 2rem;
+    font-weight: 650;
+    line-height: 1.1;
+    text-decoration: none;
+}
+
+.auth-brand__link .ti {
+    font-size: 2.2rem;
+}
+
+.auth-brand p {
+    margin: 0.2rem 0 0;
+    font-size: 0.95rem;
+}
+
+.auth-page .main-content {
+    max-width: 720px;
+    padding-top: 0.35rem;
+}
+
+.auth-grid {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.auth-panel {
+    min-width: 0;
+    padding: 0.7rem;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    background: var(--hub-surface);
+}
+
+.auth-panel h1,
+.auth-panel h2 {
+    margin: 0 0 0.7rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.auth-panel .form-label {
+    margin-bottom: 0.15rem;
+    font-size: 0.72rem;
+}
+
+.auth-register-form .mb-2 {
+    display: grid;
+    grid-template-columns: minmax(5rem, 0.72fr) minmax(0, 1.28fr);
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.auth-register-form .form-label {
+    margin: 0;
+}
+
+.auth-panel .form-control {
+    min-height: 26px;
+    padding: 0.12rem 0.35rem;
+    border-color: #adb5bd;
+    border-radius: 2px;
+    font-size: 0.8rem;
+}
+
+.auth-panel .mb-2 {
+    margin-bottom: 0.35rem !important;
+}
+
+.auth-panel .mb-3 {
+    margin-bottom: 0.55rem !important;
+}
+
+.auth-panel .mb-4 {
+    margin-bottom: 0.9rem !important;
+}
+
+.auth-panel .btn {
+    min-height: 29px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.78rem;
+}
+
+.auth-crosslink {
+    margin: 0.6rem 0 0;
+    font-size: 0.7rem;
+}
+
+.auth-crosslink a {
+    color: #0a58ca;
+    text-decoration: underline;
+}
+
+/* Formulario de alta/edición, etiquetas alineadas como en el wireframe. */
+.form-page {
+    max-width: 720px;
+    padding: 0.1rem 0;
+}
+
+.form-page h1 {
+    margin-bottom: 0.7rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.form-row-compact {
+    display: grid;
+    grid-template-columns: 145px minmax(180px, 360px);
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.55rem;
+}
+
+.form-row-compact > label {
+    margin: 0;
+    font-size: 0.83rem;
+}
+
+.form-row-compact .form-control,
+.form-row-compact .form-select {
+    min-height: 29px;
+    padding: 0.2rem 0.4rem;
+    border-color: #adb5bd;
+    border-radius: 2px;
+    font-size: 0.82rem;
+}
+
+.form-row-compact--textarea {
+    align-items: start;
+}
+
+.form-row-compact--textarea label {
+    padding-top: 0.25rem;
+}
+
+.form-row-compact--textarea textarea {
+    min-height: 106px;
+    resize: vertical;
+}
+
+.form-submit-row {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0.65rem 0 0 150px;
+}
+
+.form-submit-row a {
+    font-size: 0.82rem;
+}
+
+/* Detalle y comunidad de usuarios favoritos. */
+.detail-toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+}
+
+.detail-toolbar > a,
+.owner-actions > a {
+    font-size: 0.85rem;
+}
+
+.owner-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.detail-panel {
+    display: block;
+    padding: 0.8rem;
+    border: 1px solid var(--hub-border);
+    border-radius: 4px;
+    background: #fff;
+}
+
+.detail-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.cover-placeholder {
+    display: grid;
+    flex: 0 0 120px;
+    width: 120px;
+    height: 140px;
+    place-items: center;
+    background: #e9ecef;
+    color: #adb5bd;
+    font-size: 3rem;
+}
+
+.detail-copy h1 {
+    margin: 0 0 0.45rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.detail-copy p {
+    margin: 0.15rem 0;
+    font-size: 0.8rem;
+}
+
+.favorite-button {
+    margin-top: 0.45rem;
+}
+
+.book-description {
+    margin-top: 0.7rem;
+    padding: 0.65rem 0.1rem 0.1rem;
+    border-top: 1px solid var(--hub-border);
+}
+
+.book-description h2 {
+    margin: 0 0 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.book-description p {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    white-space: pre-wrap;
+}
+
+.favorited-by {
+    margin-top: 0.85rem;
+}
+
+.favorited-by h2 {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.user-list .list-group-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 32px;
+    padding: 0.25rem 0.45rem;
+    border-color: #e9ecef;
+    font-size: 0.82rem;
+}
+
+.user-dot {
+    display: inline-grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border-radius: 50%;
+    background: #e9ecef;
+    color: #495057;
+}
+
+.user-dot i {
+    font-size: 1rem;
+}
+
+.flash-stack {
+    margin-bottom: 0.8rem;
+}
+
+.flash-stack .alert {
+    margin-bottom: 0.45rem;
+    padding: 0.45rem 2.4rem 0.45rem 0.65rem;
+    font-size: 0.85rem;
+}
+
+.flash-stack .alert .btn-close {
+    top: 50%;
+    right: 0.35rem;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+}
+
+:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+@media (max-width: 767.98px) {
+    .app-navbar .app-container {
+        flex-wrap: wrap;
+    }
+
+    .app-nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        border-top: 1px solid #495057;
+    }
+
+    .app-user-nav {
+        margin-left: auto;
+    }
+
+    .book-description {
+        padding: 0.65rem 0 0;
+        border-top: 1px solid var(--hub-border);
+    }
+}
+
+@media (max-width: 575.98px) {
+    .auth-grid {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+    }
+
+    .auth-register-form .mb-2 {
+        grid-template-columns: minmax(5rem, 0.72fr) minmax(0, 1.28fr);
+    }
+
+    .auth-brand {
+        padding-top: 0.7rem;
+    }
+
+    .auth-brand__link {
+        font-size: 1.7rem;
+    }
+
+    .form-row-compact {
+        grid-template-columns: 1fr;
+        gap: 0.15rem;
+    }
+
+    .form-submit-row {
+        margin-left: 0;
+    }
+
+    .detail-main {
+        flex-direction: column;
+    }
+
+    .cover-placeholder {
+        width: 100%;
+        height: 110px;
+        flex-basis: 110px;
+    }
+}

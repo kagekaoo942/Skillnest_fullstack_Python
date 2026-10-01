@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% set editing = modo == 'editar' %}
+{% block title %}{{ 'Editar Libro' if editing else 'Agregar Nuevo Libro' }} | BookHub{% endblock %}
+
+{% block contenido %}
+<div class="form-page">
+    <h1>{{ 'Editar Libro' if editing else 'Agregar Nuevo Libro' }}</h1>
+    <form action="{{ url_for('libros.editar', libro_id=libro.id) if editing else url_for('libros.crear') }}" method="post" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="form-row-compact">
+            <label for="titulo">Título:</label>
+            <input id="titulo" type="text" name="titulo" class="form-control form-control-sm" minlength="2" maxlength="180" value="{{ form_data.get('titulo', '') }}" required>
+        </div>
+        <div class="form-row-compact">
+            <label for="autor">Autor:</label>
+            <input id="autor" type="text" name="autor" class="form-control form-control-sm" maxlength="120" value="{{ form_data.get('autor', '') }}" required>
+        </div>
+        <div class="form-row-compact">
+            <label for="genero">Género:</label>
+            <select id="genero" name="genero" class="form-select form-select-sm" required>
+                <option value="">Selecciona un género</option>
+                {% for genero in generos %}
+                    <option value="{{ genero }}" {% if form_data.get('genero') == genero %}selected{% endif %}>{{ genero }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-row-compact">
+            <label for="fecha-publicacion">Fecha de publicación:</label>
+            {# Los límites del control se comparten con Libro.validar en el servidor. #}
+            <input id="fecha-publicacion" type="date" name="fecha_publicacion" class="form-control form-control-sm" min="{{ fecha_minima }}" max="{{ fecha_maxima }}" value="{{ form_data.get('fecha_publicacion', '') }}" required>
+        </div>
+        <div class="form-row-compact form-row-compact--textarea">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" name="descripcion" class="form-control form-control-sm" minlength="10" maxlength="5000" rows="5" required>{{ form_data.get('descripcion', '') }}</textarea>
+        </div>
+        <div class="form-submit-row">
+            <button type="submit" class="btn btn-dark btn-sm">{{ 'Actualizar' if editing else 'Guardar' }}</button>
+            <a href="{{ url_for('libros.detalle', libro_id=libro.id) if editing else url_for('libros.mis_libros') }}">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

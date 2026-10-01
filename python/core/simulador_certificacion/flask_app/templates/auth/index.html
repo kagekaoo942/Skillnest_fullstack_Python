@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}BookHub — Iniciar sesión / Registro{% endblock %}
+
+{% block contenido %}
+{# Registro e inicio de sesión se muestran juntos, como en la pantalla de acceso. #}
+<div class="auth-grid">
+    <section class="auth-panel" aria-labelledby="create-account-title">
+        <h1 id="create-account-title">Crear Cuenta</h1>
+        <form action="{{ url_for('auth.registrar') }}" method="post" class="auth-register-form" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="mb-2">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input id="nombre" name="nombre" type="text" class="form-control form-control-sm" minlength="2" maxlength="80" value="{{ form_data.get('nombre', '') }}" autocomplete="given-name" required>
+            </div>
+            <div class="mb-2">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input id="apellido" name="apellido" type="text" class="form-control form-control-sm" minlength="2" maxlength="80" value="{{ form_data.get('apellido', '') }}" autocomplete="family-name" required>
+            </div>
+            <div class="mb-2">
+                <label for="email-register" class="form-label">E-mail</label>
+                <input id="email-register" name="email" type="email" class="form-control form-control-sm" maxlength="150" value="{{ form_data.get('email', '') }}" autocomplete="email" required>
+            </div>
+            <div class="mb-2">
+                <label for="password-register" class="form-label">Contraseña</label>
+                <input id="password-register" name="password" type="password" class="form-control form-control-sm" minlength="8" maxlength="72" autocomplete="new-password" required>
+            </div>
+            <div class="mb-3">
+                <label for="password-confirm" class="form-label">Confirmar Contraseña</label>
+                <input id="password-confirm" name="confirmar_password" type="password" class="form-control form-control-sm" minlength="8" maxlength="72" autocomplete="new-password" required>
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm w-100">Registrarse</button>
+        </form>
+        <p class="auth-crosslink">¿Ya tienes cuenta? <a href="#login-title">Inicia sesión</a></p>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="login-title">
+        <h2 id="login-title">Iniciar Sesión</h2>
+        <form action="{{ url_for('auth.iniciar_sesion') }}" method="post" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="mb-3">
+                <label for="email-login" class="form-label">E-mail</label>
+                <input id="email-login" name="email" type="email" class="form-control form-control-sm" maxlength="150" autocomplete="username" required>
+            </div>
+            <div class="mb-4">
+                <label for="password-login" class="form-label">Contraseña</label>
+                <input id="password-login" name="password" type="password" class="form-control form-control-sm" autocomplete="current-password" required>
+            </div>
+            <button type="submit" class="btn btn-dark btn-sm w-100">Iniciar Sesión</button>
+        </form>
+        <p class="auth-crosslink">¿No tienes cuenta? <a href="#create-account-title">Regístrate</a></p>
+    </section>
+</div>
+{% endblock %}
