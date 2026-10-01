@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ curso.nombre }} | Estudiantes y Cursos{% endblock %}
+
+{% block content %}
+<header class="page-header page-header--detail">
+    <div>
+        <h1 class="page-title">Estudiantes de {{ curso.nombre }}</h1>
+        <p class="page-description">Estudiantes asociados al curso seleccionado.</p>
+    </div>
+    <a class="btn btn-outline-secondary" href="{{ url_for('cursos') }}">
+        <span class="app-icon app-icon--back" aria-hidden="true"></span>
+        Volver a cursos
+    </a>
+</header>
+
+<section class="content-panel detail-panel" aria-label="Estudiantes de {{ curso.nombre }}">
+    {% if curso.estudiantes %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <caption class="visually-hidden">Estudiantes de {{ curso.nombre }}</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for estudiante in curso.estudiantes %}
+                        <tr>
+                            <td>{{ estudiante.nombre }}</td>
+                            <td>{{ estudiante.apellido }}</td>
+                            <td>{{ estudiante.edad }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state" role="status">
+            <h2 class="empty-state__title">Este curso todavía no tiene estudiantes.</h2>
+            <p class="empty-state__copy">Agrega un estudiante y asígnalo a este curso.</p>
+            <a class="btn btn-primary" href="{{ url_for('nuevo_estudiante') }}">Agregar estudiante</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

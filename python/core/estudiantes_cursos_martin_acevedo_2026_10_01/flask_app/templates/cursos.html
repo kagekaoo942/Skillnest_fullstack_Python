@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Cursos | Estudiantes y Cursos{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <div>
+        <h1 class="page-title">Cursos</h1>
+        <p class="page-description">Elige un curso para consultar a sus estudiantes.</p>
+    </div>
+</header>
+
+<div class="row g-4 course-index">
+    <section class="col-12 col-lg-8 order-1 order-lg-2" aria-labelledby="courses-heading">
+        <div class="content-panel course-list-panel">
+            <div class="section-heading">
+                <h2 class="section-title" id="courses-heading">Todos los Cursos</h2>
+                <span class="section-count">{{ cursos|length }} cursos</span>
+            </div>
+
+            {% if cursos %}
+                <ul class="list-group list-group-flush course-list">
+                    {% for curso in cursos %}
+                        <li class="list-group-item course-list__item">
+                            <a class="course-link" href="{{ url_for('mostrar_curso', id=curso.id) }}">
+                                <span>{{ curso.nombre }}</span>
+                                <span class="course-link__action">Ver estudiantes</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="empty-state" role="status">
+                    <h3 class="empty-state__title">No existen cursos registrados.</h3>
+                    <p class="empty-state__copy mb-0">Crea un curso para comenzar a asociar estudiantes.</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="col-12 col-lg-4 order-2 order-lg-1" aria-labelledby="new-course-heading">
+        <div class="content-panel create-panel">
+            <h2 class="section-title" id="new-course-heading">Nuevo Curso</h2>
+            <form action="{{ url_for('crear_curso') }}" method="post">
+                <div class="mb-3">
+                    <label for="course-name" class="form-label">Nombre</label>
+                    <input
+                        type="text"
+                        id="course-name"
+                        name="nombre"
+                        class="form-control"
+                        maxlength="45"
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary">Crear curso</button>
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock %}

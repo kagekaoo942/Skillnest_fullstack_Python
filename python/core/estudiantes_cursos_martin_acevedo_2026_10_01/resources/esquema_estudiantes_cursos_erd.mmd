@@ -1,0 +1,19 @@
+erDiagram
+    CURSOS ||--o{ ESTUDIANTES : tiene
+
+    CURSOS {
+        INT id PK
+        VARCHAR_45 nombre
+        DATETIME created_at
+        DATETIME updated_at
+    }
+
+    ESTUDIANTES {
+        INT id PK
+        VARCHAR_45 nombre
+        VARCHAR_45 apellido
+        INT edad
+        DATETIME created_at
+        DATETIME updated_at
+        INT curso_id FK
+    }

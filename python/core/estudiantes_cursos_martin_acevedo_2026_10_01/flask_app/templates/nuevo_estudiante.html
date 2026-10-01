@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Nuevo estudiante | Estudiantes y Cursos{% endblock %}
+
+{% block content %}
+<header class="page-header page-header--form">
+    <div>
+        <h1 class="page-title">Nuevo estudiante</h1>
+        <p class="page-description">Completa sus datos y selecciona el curso al que pertenece.</p>
+    </div>
+    <a class="btn btn-outline-secondary" href="{{ url_for('cursos') }}">
+        <span class="app-icon app-icon--back" aria-hidden="true"></span>
+        Volver a cursos
+    </a>
+</header>
+
+<section class="content-panel student-form-panel" aria-labelledby="student-form-heading">
+    <h2 class="section-title" id="student-form-heading">Datos del estudiante</h2>
+
+    {% if cursos %}
+        <form action="{{ url_for('crear_estudiante') }}" method="post">
+            <div class="mb-3">
+                <label for="course-id" class="form-label">Curso</label>
+                <select id="course-id" name="curso_id" class="form-select" required>
+                    <option value="">Selecciona un curso</option>
+                    {% for curso in cursos %}
+                        <option value="{{ curso.id }}" {% if form_data.get('curso_id')|string == curso.id|string %}selected{% endif %}>
+                            {{ curso.nombre }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="student-name" class="form-label">Nombre</label>
+                <input
+                    type="text"
+                    id="student-name"
+                    name="nombre"
+                    class="form-control"
+                    maxlength="45"
+                    autocomplete="given-name"
+                    value="{{ form_data.get('nombre', '') }}"
+                    required
+                >
+            </div>
+
+            <div class="mb-3">
+                <label for="student-surname" class="form-label">Apellido</label>
+                <input
+                    type="text"
+                    id="student-surname"
+                    name="apellido"
+                    class="form-control"
+                    maxlength="45"
+                    autocomplete="family-name"
+                    value="{{ form_data.get('apellido', '') }}"
+                    required
+                >
+            </div>
+
+            <div class="mb-4">
+                <label for="student-age" class="form-label">Edad</label>
+                <input
+                    type="number"
+                    id="student-age"
+                    name="edad"
+                    class="form-control"
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                    value="{{ form_data.get('edad', '') }}"
+                    required
+                >
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Crear estudiante</button>
+                <a class="btn btn-link" href="{{ url_for('cursos') }}">Cancelar</a>
+            </div>
+        </form>
+    {% else %}
+        <div class="empty-state empty-state--inline" role="status">
+            <h3 class="empty-state__title">Primero crea un curso.</h3>
+            <p class="empty-state__copy">Un estudiante debe pertenecer a un curso.</p>
+            <a class="btn btn-primary" href="{{ url_for('cursos') }}">Crear curso</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}
