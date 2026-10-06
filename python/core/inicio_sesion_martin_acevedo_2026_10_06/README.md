@@ -2,20 +2,20 @@
 
 Aplicación de registro e inicio de sesión para practicar validaciones, contraseñas con hash y sesiones de Flask.
 
-## Configuración
+## Configuración sin `.venv`
 
 1. Crea la base de datos ejecutando `bd/esquema_inicio_sesion.sql` en MySQL.
 2. Crea una copia de `.env.example` con el nombre `.env` y completa la contraseña de MySQL.
-3. Instala las dependencias:
+3. Instala las dependencias en tu Python global. En Windows puedes usar `py`:
 
    ```powershell
-   pip install -r requirements.txt
+   py -m pip install -r requirements.txt
    ```
 
-4. Inicia el servidor:
+4. Inicia el servidor desde la terminal:
 
    ```powershell
-   python app.py
+   py app.py
    ```
 
 Abre `http://127.0.0.1:5000`.
