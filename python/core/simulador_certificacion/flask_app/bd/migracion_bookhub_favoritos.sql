@@ -2,7 +2,7 @@ USE bookhub;
 
 -- Completa descripciones antiguas antes de hacerlas obligatorias.
 UPDATE libros
-SET descripcion = 'Descripción no proporcionada.'
+SET descripcion = ''
 WHERE descripcion IS NULL OR CHAR_LENGTH(TRIM(descripcion)) < 10;
 
 ALTER TABLE libros

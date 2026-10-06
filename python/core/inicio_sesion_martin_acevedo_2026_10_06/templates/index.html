@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Registro e inicio de sesión{% endblock %}
+{% block content %}
+<section class="auth-grid">
+    <div class="card">
+        <h1>Registro</h1>
+        <p class="muted">Crea tu cuenta para comenzar.</p>
+        <form action="{{ url_for('register') }}" method="post">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" minlength="2" required>
+
+            <label for="apellido">Apellido</label>
+            <input id="apellido" name="apellido" type="text" minlength="2" required>
+
+            <label for="register-email">E-mail</label>
+            <input id="register-email" name="email" type="email" required>
+
+            <label for="register-password">Contraseña</label>
+            <input id="register-password" name="password" type="password" minlength="8" required>
+            <small>Usa 8 caracteres, una mayúscula y un número.</small>
+
+            <label for="confirm-password">Confirmación de contraseña</label>
+            <input id="confirm-password" name="confirm_password" type="password" minlength="8" required>
+
+            <button type="submit">Registrarme</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h1>Inicio de sesión</h1>
+        <p class="muted">Ingresa con tu cuenta.</p>
+        <form action="{{ url_for('login') }}" method="post">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" name="email" type="email" required>
+
+            <label for="login-password">Contraseña</label>
+            <input id="login-password" name="password" type="password" required>
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

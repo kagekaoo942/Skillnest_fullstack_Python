@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Sesión iniciada{% endblock %}
+{% block content %}
+<section class="card success-card">
+    <h1>¡Hola {{ user.nombre }}!</h1>
+    <p>Has iniciado sesión correctamente.</p>
+    <p class="muted">{{ user.email }}</p>
+    <a class="button" href="{{ url_for('logout') }}">Cerrar sesión</a>
+</section>
+{% endblock %}
