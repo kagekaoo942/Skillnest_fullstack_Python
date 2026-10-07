@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TaskTrack - Editar Tarea</title><link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></head>
+<body>
+<header class="topbar"><nav><a class="brand" href="/dashboard"><span class="brand-icon">✓</span>TaskTrack</a><a href="/dashboard">Mis Tareas</a><a href="/categorias">Categorías</a><span class="user-name">Hola, {{ session.get("usuario_nombre", "Usuario") }}</span></nav></header>
+<main class="page"><section class="form-card"><h1>Editar Tarea</h1>
+<form action="/tareas/actualizar/{{ tarea.id }}" method="post">
+    <label for="titulo">Título:</label>
+    <input id="titulo" name="titulo" type="text" value="{{ tarea.titulo }}">
+
+    <label for="categoria_id">Categoría:</label>
+    <select id="categoria_id" name="categoria_id">
+        <option value="">Selecciona una categoría</option>
+        {% for categoria in categorias %}
+            <option value="{{ categoria.id }}" {% if categoria.id == tarea.categoria_id %}selected{% endif %}>
+                {{ categoria.nombre }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="prioridad">Prioridad:</label>
+    <select id="prioridad" name="prioridad">
+        <option value="Alta" {% if tarea.prioridad == "Alta" %}selected{% endif %}>Alta</option>
+        <option value="Media" {% if tarea.prioridad == "Media" %}selected{% endif %}>Media</option>
+        <option value="Baja" {% if tarea.prioridad == "Baja" %}selected{% endif %}>Baja</option>
+    </select>
+
+    <label for="fecha_limite">Fecha límite:</label>
+    <input id="fecha_limite" name="fecha_limite" type="date" value="{{ tarea.fecha_limite }}">
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" rows="5">{{ tarea.descripcion }}</textarea>
+
+    <div class="form-actions"><button type="submit">Actualizar</button><a href="/dashboard">Cancelar</a></div>
+</form></section></main></body></html>

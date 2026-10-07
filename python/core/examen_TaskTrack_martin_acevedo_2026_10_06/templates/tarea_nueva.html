@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TaskTrack - Nueva Tarea</title><link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></head>
+<body>
+<header class="topbar"><nav><a class="brand" href="/dashboard"><span class="brand-icon">✓</span>TaskTrack</a><a href="/dashboard">Mis Tareas</a><a href="/categorias">Categorías</a><span class="user-name">Hola, {{ session.get("usuario_nombre", "Usuario") }}</span></nav></header>
+<main class="page"><section class="form-card"><h1>Nueva Tarea</h1>
+<form action="/tareas/crear" method="post">
+    <label for="titulo">Título:</label>
+    <input id="titulo" name="titulo" type="text">
+
+    <label for="categoria_id">Categoría:</label>
+    <select id="categoria_id" name="categoria_id">
+        <option value="">Selecciona una categoría</option>
+        {% for categoria in categorias %}
+            <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="prioridad">Prioridad:</label>
+    <select id="prioridad" name="prioridad">
+        <option value="">Selecciona prioridad</option>
+        <option value="Alta">Alta</option>
+        <option value="Media">Media</option>
+        <option value="Baja">Baja</option>
+    </select>
+
+    <label for="fecha_limite">Fecha límite:</label>
+    <input id="fecha_limite" name="fecha_limite" type="date">
+
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" name="descripcion" rows="5"></textarea>
+
+    <div class="form-actions"><button type="submit">Guardar</button><a href="/dashboard">Cancelar</a></div>
+</form></section></main></body></html>

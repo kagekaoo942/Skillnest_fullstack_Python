@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskTrack - Perfil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <nav>
+            <a class="brand" href="{{ url_for('tareas.dashboard') }}"><span class="brand-icon">✓</span>TaskTrack</a>
+            <a href="{{ url_for('tareas.dashboard') }}">Mis Tareas</a>
+            <a href="{{ url_for('categorias.listar') }}">Categorías</a>
+            <a href="{{ url_for('auth.perfil') }}">Perfil</a>
+            <a href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="detail-card">
+            <h1>Perfil</h1>
+            <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+            <p><strong>Apellido:</strong> {{ usuario.apellido }}</p>
+            <p><strong>E-mail:</strong> {{ usuario.email }}</p>
+        </section>
+    </main>
+</body>
+</html>

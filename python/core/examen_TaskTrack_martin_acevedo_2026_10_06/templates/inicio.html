@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskTrack - Login / Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <main class="auth-page">
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                {% for categoria, mensaje in mensajes %}
+                    <p class="flash"><strong>{{ categoria|capitalize }}:</strong> {{ mensaje }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <header class="auth-heading">
+            <h1><span class="brand-mark">✓</span> TaskTrack</h1>
+            <p>Organiza tus tareas y proyectos</p>
+        </header>
+
+        <section class="auth-grid">
+            <article class="card auth-card">
+                <h2>Crear Cuenta</h2>
+                <form action="/registro" method="post">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" name="nombre" type="text" required>
+                    <label for="apellido">Apellido</label>
+                    <input id="apellido" name="apellido" type="text" required>
+                    <label for="email_registro">E-mail</label>
+                    <input id="email_registro" name="email" type="email" required>
+                    <label for="password_registro">Contraseña</label>
+                    <input id="password_registro" name="password" type="password" minlength="2" required>
+                    <label for="confirm_password">Confirmar Contraseña</label>
+                    <input id="confirm_password" name="confirm_password" type="password" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+                <a class="secondary-link" href="#login">¿Ya tienes cuenta? Inicia sesión</a>
+            </article>
+
+            <article class="card auth-card" id="login">
+                <h2>Iniciar Sesión</h2>
+                <form action="/login" method="post">
+                    <label for="email_login">E-mail</label>
+                    <input id="email_login" name="email" type="email" required>
+                    <label for="password_login">Contraseña</label>
+                    <input id="password_login" name="password" type="password" required>
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+                <a class="secondary-link" href="#nombre">¿No tienes cuenta? Regístrate</a>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

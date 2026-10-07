@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskTrack - Categoría</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <nav>
+            <a class="brand" href="{{ url_for('tareas.dashboard') }}"><span class="brand-icon">✓</span>TaskTrack</a>
+            <a href="{{ url_for('tareas.dashboard') }}">Mis Tareas</a>
+            <a href="{{ url_for('categorias.listar') }}">Categorías</a>
+            <a href="{{ url_for('auth.perfil') }}">Perfil</a>
+        </nav>
+    </header>
+    <main class="page">
+        <section class="detail-card">
+            <h1>{{ categoria.nombre }}</h1>
+            <p>Esta categoría está disponible para organizar tus tareas.</p>
+            <p><a href="{{ url_for('categorias.editar', categoria_id=categoria.id) }}">Editar categoría</a></p>
+            <p><a href="{{ url_for('categorias.listar') }}">← Volver a Categorías</a></p>
+        </section>
+    </main>
+</body>
+</html>

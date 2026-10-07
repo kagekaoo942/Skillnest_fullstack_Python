@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TaskTrack - Categorías</title><link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></head>
+<body>
+<header class="topbar"><nav><a class="brand" href="/dashboard"><span class="brand-icon">✓</span>TaskTrack</a><a href="/dashboard">Mis Tareas</a><a href="/categorias">Categorías</a><span class="user-name">Hola, {{ session.get("usuario_nombre", "Usuario") }}</span></nav></header>
+<main class="page"><div class="page-title"><h1>Categorías</h1><a class="button" href="/categorias/nueva">+ Nueva Categoría</a></div><section class="table-card"><table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Cantidad de tareas</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.nombre }}</td>
+                <td>{{ categoria.total_tareas }}</td>
+                <td>
+                    <a href="/categorias/{{ categoria.id }}">Ver</a>
+                    <a href="/categorias/editar/{{ categoria.id }}">Editar</a>
+                    <a href="/categorias/borrar/{{ categoria.id }}">Borrar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table></section></main></body></html>

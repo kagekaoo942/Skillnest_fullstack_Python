@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TaskTrack - Detalle</title><link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"></head>
+<body>
+<header class="topbar"><nav><a class="brand" href="/dashboard"><span class="brand-icon">✓</span>TaskTrack</a><a href="/dashboard">Mis Tareas</a><a href="/categorias">Categorías</a><span class="user-name">Hola, {{ session.get("usuario_nombre", "Usuario") }}</span></nav></header>
+<main class="page"><section class="detail-card"><h1>{{ tarea.titulo }}</h1>
+    <p><strong>Categoría:</strong> {{ tarea.categoria_nombre }}</p>
+    <p><strong>Prioridad:</strong> {{ tarea.prioridad }}</p>
+    <p><strong>Estado:</strong> {{ tarea.estado }}</p>
+    <p><strong>Fecha límite:</strong> {{ tarea.fecha_limite }}</p>
+    <p><strong>Creado por:</strong> {{ tarea.creador_nombre }}</p>
+    <p><strong>Descripción:</strong> {{ tarea.descripcion }}</p>
+</section><p><a href="/dashboard">← Volver a Mis Tareas</a></p></main></body></html>

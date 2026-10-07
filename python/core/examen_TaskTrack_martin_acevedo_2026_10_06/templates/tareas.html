@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskTrack - Mis Tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <nav>
+            <a class="brand" href="/dashboard"><span class="brand-icon">✓</span>TaskTrack</a>
+            {% if session.get("usuario_id") %}
+                <a href="/dashboard">Mis Tareas</a>
+                <a href="/categorias">Categorías</a>
+                <a href="/perfil">Perfil</a>
+                <span class="user-name">Hola, {{ session.get("usuario_nombre", "Usuario") }}</span>
+            {% endif %}
+        </nav>
+        <hr>
+    </header>
+
+    <main class="page">
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                <section>
+                    {% for categoria, mensaje in mensajes %}
+                        <p class="flash"><strong>{{ categoria|capitalize }}:</strong> {{ mensaje }}</p>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endwith %}
+
+        <div class="page-title">
+            <h1>Mis Tareas</h1>
+            <a class="button" href="/tareas/nueva">+ Nueva Tarea</a>
+        </div>
+        <div class="dashboard-grid">
+        <div>
+        <section class="table-card">
+            <h2>Listado</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Categoría</th>
+                        <th>Prioridad</th>
+                        <th>Fecha Límite</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tarea in tareas %}
+                        <tr>
+                            <td>{{ tarea.titulo }}</td>
+                            <td>{{ tarea.categoria_nombre }}</td>
+                            <td><span class="tag">{{ tarea.prioridad }}</span></td>
+                            <td>{{ tarea.fecha_limite }}</td>
+                            <td>{{ tarea.estado }}</td>
+                            <td>
+                                <a href="/tareas/{{ tarea.id }}">Ver</a>
+                                <a href="/tareas/editar/{{ tarea.id }}">Editar</a>
+                                <a href="/tareas/borrar/{{ tarea.id }}">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="table-card next-tasks">
+            <h2>Próximas tareas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Fecha Límite</th>
+                        <th>Días restantes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tarea in proximas_tareas %}
+                        <tr>
+                            <td>{{ tarea.titulo }}</td>
+                            <td>{{ tarea.fecha_limite }}</td>
+                            <td>{{ tarea.dias_restantes }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        </div>
+        <section class="card summary">
+            <h2>Resumen</h2>
+            <p><span>Total de tareas</span><strong>{{ resumen.total }}</strong></p>
+            <p><span>Pendientes</span><strong>{{ resumen.pendientes }}</strong></p>
+            <p><span>En progreso</span><strong>{{ resumen.en_progreso }}</strong></p>
+            <p><span>Completadas</span><strong>{{ resumen.completadas }}</strong></p>
+        </section>
+        </div>
+    </main>
+</body>
+</html>
